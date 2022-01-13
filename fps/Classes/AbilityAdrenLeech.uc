@@ -34,7 +34,7 @@ static function bool HasActiveArtifact(Pawn Instigator)
 
 defaultproperties
 {
-     AbilityName="Energy Leech - Change"
+     AbilityName="Energy Leech"
      Description="Whenever you damage another player, you gain 1% of the damage as adrenaline. Each level increases this by 1%. |Cost (per level): 2,8,14,..."
      StartingCost=2
      CostAddPerLevel=6
