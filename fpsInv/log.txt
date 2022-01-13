@@ -1,0 +1,2 @@
+to-do:
+-gametype hitsound does not work with utcomp. utcomp is not in use anymore.

@@ -1,0 +1,6 @@
+-design
+-add store stuff
+-add abilities/artifacts
+-arrange abilities and artifacts
+
+-test server!
