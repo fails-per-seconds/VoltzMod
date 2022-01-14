@@ -4,3 +4,6 @@
 -arrange abilities and artifacts
 
 -test server!
+
+liveShare chat history:
+voltz: hello, teletype testing.
