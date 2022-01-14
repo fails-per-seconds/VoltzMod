@@ -3,11 +3,16 @@ class STY_AeEditBox extends STY2EditBox;
 defaultproperties
 {
      KeyName="AeEditBoxStyle"
-     Images(0)=Texture'fps.bgtex.fpsbox'
-     Images(1)=Texture'fps.bgtex.fpsbox'
-     Images(2)=Texture'fps.bgtex.fpsbox'
-     Images(3)=Texture'fps.bgtex.fpsbox'
-     Images(4)=Texture'fps.bgtex.fpsbox'
+     FontColors(0)=(R=255,G=255,B=255,A=255)	//white
+     FontColors(1)=(R=255,G=255,B=255,A=255)	//white
+     FontColors(2)=(R=14,G=164,B=222,A=255)	//bluey
+     FontColors(3)=(R=14,G=164,B=222,A=255)	//bluey
+     FontColors(4)=(R=133,G=133,B=133,A=255)	//grey
+     Images(0)=Texture'fps.btnormal.bt_black'
+     Images(1)=Texture'fps.btnormal.bt_grey'
+     Images(2)=Texture'fps.btnormal.bt_black'
+     Images(3)=Texture'fps.btnormal.bt_grey'
+     Images(4)=Texture'fps.btnormal.bt_grey'
      ImgStyle(0)=ISTY_Stretched
      ImgStyle(1)=ISTY_Stretched
      ImgStyle(2)=ISTY_Stretched

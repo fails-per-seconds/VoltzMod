@@ -432,13 +432,6 @@ function bool ShowAbilityDesc(GUIComponent Sender)
 	return true;
 }
 
-function bool ResetClick(GUIComponent Sender)
-{
-	Controller.OpenMenu(string(class'RPGResetPage'));
-	RPGResetConfirmPage(Controller.TopPage()).StatsMenu = self;
-	return true;
-}
-
 function bool MaxAbility(GUIComponent Sender)
 {
 	local int CurL, MaxL, y;
@@ -476,8 +469,9 @@ defaultproperties
      OnClose=RPGStatsMenuX.MyOnClose
      Begin Object Class=GUIButton Name=SellButton
          Caption="Sell"
+         StyleName="MyButton"
          WinTop=0.570000
-         WinLeft=0.735000
+         WinLeft=0.752000
          WinWidth=0.100000
          bBoundToParent=True
          bScaleToParent=True
@@ -488,8 +482,9 @@ defaultproperties
 
      Begin Object Class=GUIButton Name=ClassBuyButton
          Caption="Class"
+         StyleName="MyButton"
          WinTop=0.570000
-         WinLeft=0.535000
+         WinLeft=0.550000
          WinWidth=0.100000
          bBoundToParent=True
          bScaleToParent=True
@@ -500,8 +495,9 @@ defaultproperties
 
      Begin Object Class=GUIButton Name=SubClassBuyButton
          Caption="Mastery"
+         StyleName="MyButton"
          WinTop=0.570000
-         WinLeft=0.635000
+         WinLeft=0.651000
          WinWidth=0.100000
          bBoundToParent=True
          bScaleToParent=True
@@ -512,8 +508,9 @@ defaultproperties
 
      Begin Object Class=GUIButton Name=AbilityMaxButton
          Caption="Max"
+         StyleName="MyButton"
          WinTop=0.570000
-         WinLeft=0.935000
+         WinLeft=0.954000
          WinWidth=0.100000
          bBoundToParent=True
          bScaleToParent=True

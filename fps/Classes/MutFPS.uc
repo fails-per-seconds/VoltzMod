@@ -832,12 +832,14 @@ function BotLevelUp(Bot B, RPGPlayerDataObject Data)
 		{
 			bHasAbility = false;
 			for (y = 0; y < Data.Abilities.length; y++)
+			{
 				if (Abilities[x] == Data.Abilities[y])
 				{
 					bHasAbility = true;
 					TotalAbilityChance += Abilities[x].static.BotBuyChance(B, Data, Data.AbilityLevels[y]);
 					y = Data.Abilities.length;
 				}
+			}
 			if (!bHasAbility)
 				TotalAbilityChance += Abilities[x].static.BotBuyChance(B, Data, 0);
 		}
@@ -849,6 +851,7 @@ function BotLevelUp(Bot B, RPGPlayerDataObject Data)
 		{
 			bHasAbility = false;
 			for (y = 0; y < Data.Abilities.length; y++)
+			{
 				if (Abilities[x] == Data.Abilities[y])
 				{
 					bHasAbility = true;
@@ -861,6 +864,7 @@ function BotLevelUp(Bot B, RPGPlayerDataObject Data)
 					}
 					y = Data.Abilities.length;
 				}
+			}
 			if (!bHasAbility)
 			{
 				TotalAbilityChance += Abilities[x].static.BotBuyChance(B, Data, 0);
@@ -1075,7 +1079,9 @@ simulated function Tick(float deltaTime)
 				GUIController(PC.Player.GUIController).RegisterStyle(class'STY_ResetButton');
 				//custom
 				GUIController(PC.Player.GUIController).RegisterStyle(class'STY_CloseButton');
+				GUIController(PC.Player.GUIController).RegisterStyle(class'STY_MyButton');
 				GUIController(PC.Player.GUIController).RegisterStyle(class'STY_MyLabel');
+				GUIController(PC.Player.GUIController).RegisterStyle(class'STY_MyList');
 				GUIController(PC.Player.GUIController).RegisterStyle(class'STY_AeBox');
 				GUIController(PC.Player.GUIController).RegisterStyle(class'STY_AeEditBox');
 			}

@@ -150,5 +150,5 @@ defaultproperties
      AbilityConfigs(58)=(AvailableAbility=Class'fps.AbilityDefenseSentinelEnergy',MaxLevels=(0,0,0,5,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,2))
      AbilityConfigs(59)=(AvailableAbility=Class'fps.AbilityDefenseSentinelArmor',MaxLevels=(0,0,0,0,0,0,5,0,0,0,0,5,0,0,0,0,0,2,0,0,0,0,5,5))
      AbilityConfigs(60)=(AvailableAbility=Class'fps.AbilitySpiderSteroids',MaxLevels=(0,0,0,0,0,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0))
-     BotChance=1
+     BotChance=0
 }

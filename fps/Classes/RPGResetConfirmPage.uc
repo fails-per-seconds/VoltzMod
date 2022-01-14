@@ -17,6 +17,7 @@ function bool InternalOnClick(GUIComponent Sender)
 	{
 		OldController = Controller;
 		StatsMenu.StatsInv.ServerResetData(PlayerOwner().PlayerReplicationInfo);
+		Controller.ViewportOwner.Console.DelayedConsoleCommand("Reconnect");
 		Controller.CloseMenu(false);
 		OldController.CloseMenu(false);
 	}
