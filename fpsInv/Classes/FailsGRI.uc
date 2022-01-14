@@ -1,9 +1,9 @@
 class FailsGRI extends InvasionGameReplicationInfo;
 
-var int BossTimeLimit;
-var int KillZoneLimit;
-var int NumMons, NumBoss;
-var int MonsterPreloads;
+var() int BossTimeLimit;
+var() int KillZoneLimit;
+var() int NumMons, NumBoss;
+var() int MonsterPreloads;
 
 replication
 {

@@ -9,9 +9,9 @@ var float NextHitSoundTime;
 var Sound EnemyHitSound;
 var Sound FriendlyHitSound;
 
-var bool bMeshesLoaded;
-var bool bLoadMeshes;
-var bool bLoadingStarted;
+var() bool bMeshesLoaded;
+var() bool bLoadMeshes;
+var() bool bLoadingStarted;
 
 replication
 {

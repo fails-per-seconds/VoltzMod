@@ -1,4 +1,5 @@
-class FailsHud extends HudInvasion //HudCTeamDeathMatch
+//HudCTeamDeathMatch
+class FailsHud extends HudInvasion
 	config(fpsInv);
 
 //timer
@@ -14,14 +15,14 @@ var Color PulseColor;
 var Color OutlineColor;
 
 //preload
-var localized string PreloadString;
-var bool bDrawPreloading, bMeshesLoaded, bLoadingStarted;
-var Color LoadingContainerColor;
-var Material LoadingContainerImage;
-var Material LoadingContainerCompanionImage;
-var Material LoadingBarImage;
-var float LoadingBarSizeX, LoadingBarSpread;
-var Font LoadingFont;
+var() localized string PreloadString;
+var() bool bDrawPreloading, bMeshesLoaded, bLoadingStarted;
+var() Color LoadingContainerColor;
+var() Material LoadingContainerImage;
+var() Material LoadingContainerCompanionImage;
+var() Material LoadingBarImage;
+var() float LoadingBarSizeX, LoadingBarSpread;
+var() Font LoadingFont;
 
 simulated function UpdatePrecacheMaterials()
 {

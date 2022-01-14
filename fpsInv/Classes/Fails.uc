@@ -1,8 +1,8 @@
 class Fails extends Invasion
 	config(fpsInv);
 
-var config int MaxAlive;
-var config bool bPreload, bHitSound;
+var() config int MaxAlive;
+var() config bool bPreload, bHitSound;
 
 struct MonsterInfo
 {

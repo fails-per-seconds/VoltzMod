@@ -1,8 +1,8 @@
 class PreloadMesh extends Actor;
 
-var int MeshNumber;
-var int MeshCount;
-var Controller OwnerController;
+var() int MeshNumber;
+var() int MeshCount;
+var() Controller OwnerController;
 
 simulated function Tick(float DeltaTime)
 {
