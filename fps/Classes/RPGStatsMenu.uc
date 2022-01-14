@@ -3,11 +3,11 @@ class RPGStatsMenu extends GUIPage
 
 var RPGStatsInv StatsInv;
 
-var AemoBox WeaponSpeedBox, HealthBonusBox, AdrenalineMaxBox, AmmoMaxBox;
-var moEditBox AttackBox, DefenseBox, PointsAvailableBox;
+var AemoBox WeaponSpeedBox, HealthBonusBox, AdrenalineMaxBox, AmmoMaxBox, PointsAvailableBox;
+var AemoBox AttackBox, DefenseBox; //useless
 var int StatDisplayControlsOffset, ButtonControlsOffset, AmtControlsOffset;
 var int NumButtonControls;
-var GUIListBox Abilities;
+var AeListBox Abilities;
 var localized string CurrentLevelText, MaxText, CostText, CantBuyText;
 
 function InitComponent(GUIController MyController, GUIComponent MyOwner)
@@ -17,11 +17,11 @@ function InitComponent(GUIController MyController, GUIComponent MyOwner)
 	WeaponSpeedBox = AemoBox(Controls[2]);
 	HealthBonusBox = AemoBox(Controls[3]);
 	AdrenalineMaxBox = AemoBox(Controls[4]);
-	AttackBox = moEditBox(Controls[5]);
-	DefenseBox = moEditBox(Controls[6]);
+	AttackBox = AemoBox(Controls[5]);
+	DefenseBox = AemoBox(Controls[6]);
 	AmmoMaxBox = AemoBox(Controls[7]);
-	PointsAvailableBox = moEditBox(Controls[8]);
-	Abilities = GUIListBox(Controls[15]);
+	PointsAvailableBox = AemoBox(Controls[8]);
+	Abilities = AeListBox(Controls[15]);
 	Abilities.MyScrollBar.WinWidth = 0.01;
 
 //controls
@@ -231,6 +231,11 @@ function bool BuyAbility(GUIComponent Sender)
 
 function bool ResetClick(GUIComponent Sender)
 {
+	if (StatsInv.Data.Level <= 15)
+	{
+		Controls[23].MenuStateChange(MSAT_Disabled);
+		return false;
+	}
 	Controller.OpenMenu("fps.RPGResetConfirmPage");
 	RPGResetConfirmPage(Controller.TopPage()).StatsMenu = self;
 	return true;
@@ -278,14 +283,13 @@ defaultproperties
      Controls(1)=GUIButton'fps.RPGStatsMenu.CloseButton'
 
      Begin Object Class=AemoBox Name=WeaponSpeedSelect
-         CaptionWidth=0.710000
          Caption="Fire-Rate"
          OnCreateComponent=WeaponSpeedSelect.InternalOnCreateComponent
          IniOption="@INTERNAL"
          WinTop=0.239000
          WinLeft=0.163000
          WinWidth=0.275000
-         WinHeight=0.060000
+         WinHeight=0.040000
          bBoundToParent=True
          bScaleToParent=True
      End Object
@@ -352,8 +356,7 @@ defaultproperties
      End Object
      Controls(7)=AemoBox'fps.RPGStatsMenu.MaxAmmoSelect'
 
-     Begin Object Class=moEditBox Name=PointsAvailableSelect
-         bReadOnly=True
+     Begin Object Class=AemoBox Name=PointsAvailableSelect
          CaptionWidth=0.775000
          Caption="Ability Points [AP]"
          OnCreateComponent=PointsAvailableSelect.InternalOnCreateComponent
@@ -365,10 +368,11 @@ defaultproperties
          bBoundToParent=True
          bScaleToParent=True
      End Object
-     Controls(8)=moEditBox'fps.RPGStatsMenu.PointsAvailableSelect'
+     Controls(8)=AemoBox'fps.RPGStatsMenu.PointsAvailableSelect'
 
      Begin Object Class=GUIButton Name=WeaponSpeedButton
          Caption="+"
+         StyleName="MyButton"
          WinTop=0.270000
          WinLeft=0.440000
          WinWidth=0.040000
@@ -381,6 +385,7 @@ defaultproperties
 
      Begin Object Class=GUIButton Name=HealthBonusButton
          Caption="+"
+         StyleName="MyButton"
          WinTop=0.370000
          WinLeft=0.440000
          WinWidth=0.040000
@@ -393,6 +398,7 @@ defaultproperties
 
      Begin Object Class=GUIButton Name=AdrenalineMaxButton
          Caption="+"
+         StyleName="MyButton"
          WinTop=0.470000
          WinLeft=0.440000
          WinWidth=0.040000
@@ -425,6 +431,7 @@ defaultproperties
 
      Begin Object Class=GUIButton Name=AmmoMaxButton
          Caption="+"
+         StyleName="MyButton"
          WinTop=0.570000
          WinLeft=0.440000
          WinWidth=0.040000
@@ -435,25 +442,26 @@ defaultproperties
      End Object
      Controls(14)=GUIButton'fps.RPGStatsMenu.AmmoMaxButton'
 
-     Begin Object Class=GUIListBox Name=AbilityList
+     Begin Object Class=AeListBox Name=AbilityList
          bVisibleWhenEmpty=True
          OnCreateComponent=AbilityList.InternalOnCreateComponent
          StyleName="AbilityList"
          Hint="All the abilities available to purchase"
          WinTop=0.239000
-         WinLeft=0.502000
+         WinLeft=0.501500
          WinWidth=0.600000
          WinHeight=0.330000
          bBoundToParent=True
          bScaleToParent=True
          OnClick=RPGStatsMenu.UpdateAbilityButtons
      End Object
-     Controls(15)=GUIListBox'fps.RPGStatsMenu.AbilityList'
+     Controls(15)=AeListBox'fps.RPGStatsMenu.AbilityList'
 
      Begin Object Class=GUIButton Name=AbilityBuyButton
          Caption="Buy"
+         StyleName="MyButton"
          WinTop=0.570000
-         WinLeft=0.835000
+         WinLeft=0.853000
          WinWidth=0.100000
          bBoundToParent=True
          bScaleToParent=True

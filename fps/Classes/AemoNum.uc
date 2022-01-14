@@ -1,7 +1,7 @@
 class AemoNum extends GUIMenuOption;
 
 var(Option) bool bMaskText, bReadOnly;
-var(Option) editconst noexport AeGUIEditBox MyEditBox;
+var(Option) editconst noexport AeGUINum MyNum;
 var() string Value;
 var() int MinValue;
 var() int MaxValue;
@@ -9,21 +9,21 @@ var() int MaxValue;
 function InitComponent(GUIController MyController, GUIComponent MyOwner)
 {
 	if (MinValue < 0)
-		MyEditBox.bIncludeSign = True;
+		MyNum.bIncludeSign = True;
 
 	Super.Initcomponent(MyController, MyOwner);
 
-	MyEditBox = AeGUIEditBox(MyComponent);
+	MyNum = AeGUINum(MyComponent);
 
-	MyEditBox.OnChange = EditOnChange;
-	MyEditBox.SetText(Value);
-	MyEditBox.OnKeyEvent = EditKeyEvent;
-	MyEditBox.OnDeActivate = CheckValue;
+	MyNum.OnChange = EditOnChange;
+	MyNum.SetText(Value);
+	MyNum.OnKeyEvent = EditKeyEvent;
+	MyNum.OnDeActivate = CheckValue;
 
 	CalcMaxLen();
 
-	MyEditBox.IniOption  = IniOption;
-	MyEditBox.IniDefault = IniDefault;
+	MyNum.IniOption  = IniOption;
+	MyNum.IniDefault = IniDefault;
 
 	ReadOnly(bReadOnly || bValueReadOnly);
 	MaskText(bMaskText);
@@ -41,7 +41,7 @@ function CalcMaxLen()
 		x*=10;
 	}
 
-	MyEditBox.MaxWidth = DigitCount;
+	MyNum.MaxWidth = DigitCount;
 }
 
 function SetValue(int V)
@@ -52,17 +52,17 @@ function SetValue(int V)
 	if (V > MaxValue)
 		V = MaxValue;
 
-	MyEditBox.SetText(string(Clamp(V, MinValue, MaxValue)));
+	MyNum.SetText(string(Clamp(V, MinValue, MaxValue)));
 }
 
 function bool EditKeyEvent(out byte Key, out byte State, float Delta)
 {
-	return MyEditBox.InternalOnKeyEvent(Key,State,Delta);
+	return MyNum.InternalOnKeyEvent(Key,State,Delta);
 }
 
 function EditOnChange(GUIComponent Sender)
 {
-	Value = string(Clamp(int(MyEditBox.TextStr), MinValue, MaxValue));
+	Value = string(Clamp(int(MyNum.TextStr), MinValue, MaxValue));
 	OnChange(Self);
 }
 
@@ -75,9 +75,9 @@ function ValidateValue()
 {
 	local int i;
 
-	i = int(MyEditBox.TextStr);
-	MyEditBox.TextStr = string(Clamp(i, MinValue, MaxValue));
-	MyEditBox.bHasFocus = False;
+	i = int(MyNum.TextStr);
+	MyNum.TextStr = string(Clamp(i, MinValue, MaxValue));
+	MyNum.bHasFocus = False;
 }
 
 function SetComponentValue(coerce string NewValue, optional bool bNoChange)
@@ -96,12 +96,12 @@ function string GetComponentValue()
 
 function string GetText()
 {
-	return MyEditBox.GetText();
+	return MyNum.GetText();
 }
 
 function SetText(string NewText)
 {
-	MyEditBox.SetText(NewText);
+	MyNum.SetText(NewText);
 }
 
 function ReadOnly(bool b)
@@ -112,33 +112,35 @@ function ReadOnly(bool b)
 function SetReadOnly(bool b)
 {
 	Super.SetReadOnly(b);
-	MyEditBox.bReadOnly = b;
+	MyNum.bReadOnly = b;
 }
 
 function IntOnly(bool b)
 {
-	MyEditBox.bIntOnly = b;
+	MyNum.bIntOnly = b;
 }
 
 function FloatOnly(bool b)
 {
-	MyEditBox.bFloatOnly = b;
+	MyNum.bFloatOnly = b;
 }
 
 function MaskText(bool b)
 {
-	MyEditBox.bMaskText = b;
+	MyNum.bMaskText = b;
 }
 
 defaultproperties
 {
-     CaptionWidth=0.010000
-     ComponentClassName="fps.AeGUIEditBox"
      Value="0"
      MinValue=-9999
      MaxValue=9999
+     bReadOnly=False
+     CaptionWidth=0.010000
+     ComponentClassName="fps.AeGUINum"
+     LabelStyleName="MyLabel"
+     LabelColor=(R=255,G=255,B=255,A=255)
      PropagateVisibility=False
      WinHeight=0.060000
-     bAcceptsInput=True
-     bReadOnly=False
+     //bAcceptsInput=True
 }

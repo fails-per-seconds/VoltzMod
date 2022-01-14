@@ -13,11 +13,11 @@ defaultproperties
      FontColors(0)=(G=195)
      FontColors(3)=(B=255,G=255)
      FontColors(4)=(B=192,G=192,R=192)
-     Images(0)=Texture'fps.bgtex.fpslist'
-     Images(1)=Texture'fps.bgtex.fpslist'
-     Images(2)=Texture'fps.bgtex.fpslist'
-     Images(3)=Texture'fps.bgtex.fpslist'
-     Images(4)=Texture'fps.bgtex.fpslist'
+     Images(0)=Texture'fps.btnormal.bt_black'
+     Images(1)=Texture'fps.btnormal.bt_black'
+     Images(2)=Texture'fps.btnormal.bt_black'
+     Images(3)=Texture'fps.btnormal.bt_black'
+     Images(4)=Texture'fps.btnormal.bt_black'
      ImgStyle(0)=ISTY_PartialScaled
      ImgStyle(1)=ISTY_PartialScaled
      ImgStyle(2)=ISTY_PartialScaled
