@@ -25,8 +25,6 @@ defaultproperties
      MinWeaponSpeed=5
      MinHealthBonus=5
      MinAdrenalineMax=105
-     MinDB=5
-     MinDR=5
      MinAmmo=5
      AbilityName="Awareness"
      Description="Informs you of your enemies' health with a display over their heads. At level 1 you get a small, dully-colored indicator (green, yellow, or red). At level 2 you get a larger colored health bar and a shield bar. You must have at least 5 points in every stat to purchase this ability. |Cost (per level): 20,25"

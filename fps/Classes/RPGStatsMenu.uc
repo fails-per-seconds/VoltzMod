@@ -446,7 +446,7 @@ defaultproperties
          bVisibleWhenEmpty=True
          OnCreateComponent=AbilityList.InternalOnCreateComponent
          StyleName="AbilityList"
-         Hint="All the abilities available to purchase"
+         Hint="available abilities"
          WinTop=0.239000
          WinLeft=0.501500
          WinWidth=0.600000
@@ -540,12 +540,11 @@ defaultproperties
 
      Begin Object Class=GUIButton Name=ResetButton
          Caption="Reset"
-         FontScale=FNS_Small
-         StyleName="ResetButton"
-         WinTop=0.050000
-         WinLeft=0.225000
-         WinWidth=0.065000
-         WinHeight=0.025000
+         StyleName="MyReset"
+         WinTop=0.373000
+         WinLeft=-0.154000
+         WinWidth=0.263000
+         WinHeight=0.057500
          bBoundToParent=True
          bScaleToParent=True
          OnClick=RPGStatsMenu.ResetClick

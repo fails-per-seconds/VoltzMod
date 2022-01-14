@@ -242,6 +242,6 @@ function int NetDamage(int OriginalDamage, int Damage, pawn injured, pawn instig
 
 defaultproperties
 {
-     MaxMonsterDB=374
-     MaxMonsterDR=250
+     MaxMonsterDB=0	//374
+     MaxMonsterDR=0	//250
 }

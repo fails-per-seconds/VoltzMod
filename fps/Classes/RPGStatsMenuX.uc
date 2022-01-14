@@ -41,6 +41,8 @@ function InitComponent(GUIController MyController, GUIComponent MyOwner)
 	Controls[26].Show();	//mastery buy
 	Controls[27].Show();	//max
 	Controls[28].Show();	//desc info
+	Controls[29].Show();	//home
+	Controls[30].Show();	//store
 }
 
 function bool ForcedSell()
@@ -463,6 +465,82 @@ function bool MaxAbility(GUIComponent Sender)
 	return true;
 }
 
+function bool HomeClick(GUIComponent Sender)
+{
+	Controls[0].Show();	//background
+	Controls[1].Show();	//close
+	Controls[2].Show();	//fire-rate
+	Controls[3].Show();	//health
+	Controls[4].Show();	//adren
+	Controls[5].Hide();	//db
+	Controls[6].Hide();	//dr
+	Controls[7].Show();	//ammo
+	Controls[8].Show();	//AP
+	Controls[9].Show();	//+ firerate
+	Controls[10].Show();	//+ health
+	Controls[11].Show();	//+ adren
+	Controls[12].Hide();	//+ db
+	Controls[13].Hide();	//+ dr
+	Controls[14].Show();	//+ ammo
+	Controls[15].Show();	//abilitylist
+	Controls[16].Show();	//buy
+	Controls[17].Show();	//5 firerate
+	Controls[18].Show();	//5 health
+	Controls[19].Show();	//5 adren
+	Controls[20].Hide();	//5 db
+	Controls[21].Hide();	//5 dr
+	Controls[22].Show();	//5 ammo
+	Controls[23].Show();	//reset
+	Controls[24].Show();	//sell
+	Controls[25].Show();	//class buy
+	Controls[26].Show();	//mastery buy
+	Controls[27].Show();	//max
+	Controls[28].Show();	//desc info
+	Controls[29].Show();	//home
+	Controls[30].Show();	//store
+
+	InitFor(StatsInv);
+	return true;
+}
+
+function bool StoreClick(GUIComponent Sender)
+{
+	Controls[0].Show();	//background
+	Controls[1].Show();	//close
+	Controls[2].Hide();	//fire-rate
+	Controls[3].Hide();	//health
+	Controls[4].Hide();	//adren
+	Controls[5].Hide();	//db
+	Controls[6].Hide();	//dr
+	Controls[7].Hide();	//ammo
+	Controls[8].Hide();	//AP
+	Controls[9].Hide();	//+ firerate
+	Controls[10].Hide();	//+ health
+	Controls[11].Hide();	//+ adren
+	Controls[12].Hide();	//+ db
+	Controls[13].Hide();	//+ dr
+	Controls[14].Hide();	//+ ammo
+	Controls[15].Hide();	//abilitylist
+	Controls[16].Hide();	//buy
+	Controls[17].Hide();	//5 firerate
+	Controls[18].Hide();	//5 health
+	Controls[19].Hide();	//5 adren
+	Controls[20].Hide();	//5 db
+	Controls[21].Hide();	//5 dr
+	Controls[22].Hide();	//5 ammo
+	Controls[23].Show();	//reset
+	Controls[24].Hide();	//sell
+	Controls[25].Hide();	//class buy
+	Controls[26].Hide();	//mastery buy
+	Controls[27].Hide();	//max
+	Controls[28].Hide();	//desc info
+	Controls[29].Show();	//home
+	Controls[30].Show();	//store
+
+	InitFor(StatsInv);
+	return true;
+}
+
 defaultproperties
 {
      sNone="None"
@@ -533,4 +611,36 @@ defaultproperties
          bNeverFocus=True
      End Object
      Controls(28)=GUIScrollTextBox'fps.RPGStatsMenuX.DescInfo'
+
+     Begin Object Class=GUIButton Name=HomeButton
+         Caption="Home"
+         StyleName="MyHome"
+         WinTop=0.258000
+         WinLeft=-0.154000
+         WinWidth=0.263000
+         WinHeight=0.058000
+         bBoundToParent=True
+         bScaleToParent=True
+         OnClick=RPGStatsMenuX.HomeClick
+         OnKeyEvent=HomeButton.InternalOnKeyEvent
+     End Object
+     Controls(29)=GUIButton'fps.RPGStatsMenuX.HomeButton'
+
+     Begin Object Class=GUIButton Name=StoreButton
+         Caption="Store"
+         StyleName="MyStore"
+         WinTop=0.316000
+         WinLeft=-0.154000
+         WinWidth=0.263000
+         WinHeight=0.057000
+         bBoundToParent=True
+         bScaleToParent=True
+         OnClick=RPGStatsMenuX.StoreClick
+         OnKeyEvent=StoreButton.InternalOnKeyEvent
+     End Object
+     Controls(30)=GUIButton'fps.RPGStatsMenuX.StoreButton'
+
+//credits label (30)
+//StoreListBox (29)
+//store buy (31)
 }

@@ -1076,8 +1076,10 @@ simulated function Tick(float deltaTime)
 			if (GUIController(PC.Player.GUIController) != None)
 			{
 				GUIController(PC.Player.GUIController).RegisterStyle(class'STY_AbilityList');
-				GUIController(PC.Player.GUIController).RegisterStyle(class'STY_ResetButton');
 				//custom
+				GUIController(PC.Player.GUIController).RegisterStyle(class'STY_MyHome');
+				GUIController(PC.Player.GUIController).RegisterStyle(class'STY_MyStore');
+				GUIController(PC.Player.GUIController).RegisterStyle(class'STY_MyReset');
 				GUIController(PC.Player.GUIController).RegisterStyle(class'STY_CloseButton');
 				GUIController(PC.Player.GUIController).RegisterStyle(class'STY_MyButton');
 				GUIController(PC.Player.GUIController).RegisterStyle(class'STY_MyLabel');
