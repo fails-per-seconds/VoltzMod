@@ -276,8 +276,8 @@ function InitFor(RPGStatsInv Inv)
 
 function bool BuyStoreItem(GUIComponent Sender)
 {
-	GetStatsInv().ServerGiveWeapon(String(Class<Weapon>(StoreItem.List.GetObject())),Int(StoreItem.List.GetExtra()));
-	GetStatsInv().ServerGiveArtifact(PlayerOwner().Pawn,String(Class<RPGArtifact>(StoreItem.List.GetObject())),Int(StoreItem.List.GetExtra()));
+	StatsInv.ServerGiveWeapon(String(Class<Weapon>(StoreItem.List.GetObject())),Int(StoreItem.List.GetExtra()));
+	StatsInv.ServerGiveArtifact(PlayerOwner().Pawn,String(Class<RPGArtifact>(StoreItem.List.GetObject())),Int(StoreItem.List.GetExtra()));
 
 	return true;
 }
