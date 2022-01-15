@@ -51,6 +51,9 @@ function InitComponent(GUIController MyController, GUIComponent MyOwner)
 	Controls[28].Show();	//desc info
 	Controls[29].Show();	//home
 	Controls[30].Show();	//store
+	Controls[31].Hide();	//store label
+	Controls[32].Hide();	//store list box
+	Controls[33].Hide();	//store buy button
 }
 
 function bool ForcedSell()
@@ -549,6 +552,9 @@ function bool HomeClick(GUIComponent Sender)
 	Controls[28].Show();	//desc info
 	Controls[29].Show();	//home
 	Controls[30].Show();	//store
+	Controls[31].Hide();	//store label
+	Controls[32].Hide();	//store list box
+	Controls[33].Hide();	//store buy button
 
 	InitFor(StatsInv);
 	return true;
@@ -587,6 +593,9 @@ function bool StoreClick(GUIComponent Sender)
 	Controls[28].Hide();	//desc info
 	Controls[29].Show();	//home
 	Controls[30].Show();	//store
+	Controls[31].Show();	//store label
+	Controls[32].Show();	//store list box
+	Controls[33].Show();	//store buy button
 
 	InitFor(StatsInv);
 	return true;

@@ -1,8 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\fps"
+    "\\fps",
+    "\\fps\\Classes"
   ],
-  "SelectedNode": "\\fps\\log.txt",
+  "SelectedNode": "\\fps\\Classes\\RPGStatsMenu.uc",
   "PreviewInSolutionExplorer": false
 }
