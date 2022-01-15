@@ -384,5 +384,5 @@ defaultproperties
      MinActivationTime=0.000001
      PickupClass=Class'fps.ArtifactMagicMakerPickup'
      IconMaterial=Texture'XGameTextures.SuperPickups.Udamage'
-     ItemName="Magic Weapon Maker"
+     ItemName="Magic Maker"
 }
