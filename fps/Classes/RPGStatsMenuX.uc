@@ -701,12 +701,12 @@ defaultproperties
      Controls(30)=GUIButton'fps.RPGStatsMenuX.StoreButton'
 
      Begin Object Class=AemoBox Name=CreditSelect
-         CaptionWidth=0.775000
+         CaptionWidth=0.400000
          Caption="Credits"
          OnCreateComponent=CreditSelect.InternalOnCreateComponent
          IniOption="@INTERNAL"
          WinTop=0.150000
-         WinLeft=0.457000
+         WinLeft=0.526000
          WinWidth=0.350000
          WinHeight=0.040000
          bBoundToParent=True
@@ -720,7 +720,7 @@ defaultproperties
          StyleName="AbilityList"
          Hint="available items"
          WinTop=0.239000
-         WinLeft=0.501500
+         WinLeft=0.332500
          WinWidth=0.600000
          WinHeight=0.330000
          bBoundToParent=True
@@ -732,9 +732,9 @@ defaultproperties
      Begin Object Class=GUIButton Name=StoreBuyButton
          Caption="Buy"
          StyleName="MyButton"
-         WinTop=0.750000
-         WinLeft=0.746000
-         WinWidth=0.275000
+         WinTop=0.570000
+         WinLeft=0.582000
+         WinWidth=0.100000
          WinHeight=0.060000
          bBoundToParent=True
          bScaleToParent=True
