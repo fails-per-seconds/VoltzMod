@@ -7,9 +7,17 @@ var int curLevel, curSubClasslevel;
 var string sNone, curSubClass, DisplaySubClass;
 var bool bAbilityTimer;
 
+//AUD stuff
+var AemoBox CreditBox;
+var AeListBox StoreItem;
+
 function InitComponent(GUIController MyController, GUIComponent MyOwner)
 {
 	Super.InitComponent(MyController, MyOwner);
+
+	CreditBox = AemoBox(Controls[31]);
+	StoreItem = AeListBox(Controls[32]);
+	StoreItem.MyScrollBar.WinWidth = 0.01;
 
 //controls
 	Controls[0].Show();	//background
@@ -95,9 +103,9 @@ function InitFor2(RPGStatsInv Inv, GiveItemsInv GInv)
 
 function InitFor(RPGStatsInv Inv)
 {
-	local int x, y, OldAbilityListIndex, OldAbilityListTop;
+	local int x, y, OldAbilityListIndex, OldAbilityListTop, MinSubClassLevel;
 	local bool bGotSubClass, bAllowSubClasses;
-	local int MinSubClassLevel;
+	local int s, Price, OldStoreListIndex, OldStoreListTop;
 
 	StatsInv = Inv;
 	StatsInv.StatsMenu = self;
@@ -110,6 +118,7 @@ function InitFor(RPGStatsInv Inv)
 	DefenseBox.SetText(string(StatsInv.Data.Defense));
 	AmmoMaxBox.SetText(string(StatsInv.Data.AmmoMax));
 	PointsAvailableBox.SetText(string(StatsInv.Data.PointsAvailable));
+	CreditBox.SetText(string(StatsInv.Credit));
 	curLevel = StatsInv.Data.Level;
 
 	if (StatsInv.Data.PointsAvailable <= 0)
@@ -239,6 +248,48 @@ function InitFor(RPGStatsInv Inv)
 			UpdateAbilityButtons(Abilities);
 		}
 	}
+
+	//store feature
+	OldStoreListIndex = StoreItem.List.Index;
+	OldStoreListTop = StoreItem.List.Top;
+	StoreItem.List.Clear();
+
+	for (s = 0; s < StatsInv.WeaponsList.length; s++)
+	{
+		Price = StatsInv.WeaponCost[s];
+		StoreItem.List.Add(StatsInv.WeaponsList[s].default.ItemName@" ("$CostText@Price$")",StatsInv.WeaponsList[s],string(Price));
+	}
+
+	for (s = 0; s < StatsInv.ArtifactsList.length; s++)
+	{
+		Price = StatsInv.ArtifactCost[s];
+		StoreItem.List.Add(StatsInv.ArtifactsList[s].default.ItemName@" ("$CostText@Price$")",StatsInv.ArtifactsList[s],string(Price));
+	}
+
+	StoreItem.List.SetIndex(OldStoreListIndex);
+	StoreItem.List.SetTopItem(OldStoreListTop);
+	UpdateStoreButtons(StoreItem);
+}
+
+function bool BuyStoreItem(GUIComponent Sender)
+{
+	GetStatsInv().ServerGiveWeapon(String(Class<Weapon>(StoreItem.List.GetObject())),Int(StoreItem.List.GetExtra()));
+	GetStatsInv().ServerGiveArtifact(PlayerOwner().Pawn,String(Class<RPGArtifact>(StoreItem.List.GetObject())),Int(StoreItem.List.GetExtra()));
+
+	return true;
+}
+
+function bool UpdateStoreButtons(GUIComponent Sender)
+{
+	local int Price;
+
+	Price = int(StoreItem.List.GetExtra());
+	if (Price <= 0 || Price > StatsInv.Credit)
+		Controls[33].MenuStateChange(MSAT_Disabled);
+	else
+		Controls[33].MenuStateChange(MSAT_Blurry);
+
+	return true;
 }
 
 function UpdateAbilityList()
@@ -640,7 +691,46 @@ defaultproperties
      End Object
      Controls(30)=GUIButton'fps.RPGStatsMenuX.StoreButton'
 
-//credits label (30)
-//StoreListBox (29)
-//store buy (31)
+     Begin Object Class=AemoBox Name=CreditSelect
+         CaptionWidth=0.775000
+         Caption="Credits"
+         OnCreateComponent=CreditSelect.InternalOnCreateComponent
+         IniOption="@INTERNAL"
+         WinTop=0.150000
+         WinLeft=0.457000
+         WinWidth=0.350000
+         WinHeight=0.040000
+         bBoundToParent=True
+         bScaleToParent=True
+     End Object
+     Controls(31)=AemoBox'fps.RPGStatsMenuX.CreditSelect'
+
+     Begin Object Class=AeListBox Name=StoreListBox
+         bVisibleWhenEmpty=True
+         OnCreateComponent=StoreListBox.InternalOnCreateComponent
+         StyleName="AbilityList"
+         Hint="available items"
+         WinTop=0.239000
+         WinLeft=0.501500
+         WinWidth=0.600000
+         WinHeight=0.330000
+         bBoundToParent=True
+         bScaleToParent=True
+         OnClick=RPGStatsMenuX.UpdateStoreButtons
+     End Object
+     Controls(32)=AeListBox'fps.RPGStatsMenuX.StoreListBox'
+
+     Begin Object Class=GUIButton Name=StoreBuyButton
+         Caption="Buy"
+         StyleName="MyButton"
+         WinTop=0.750000
+         WinLeft=0.746000
+         WinWidth=0.275000
+         WinHeight=0.060000
+         bBoundToParent=True
+         bScaleToParent=True
+         OnClick=RPGStatsMenuX.BuyStoreItem
+         OnKeyEvent=StoreBuyButton.InternalOnKeyEvent
+     End Object
+     Controls(33)=GUIButton'fps.RPGStatsMenuX.StoreBuyButton'
 }

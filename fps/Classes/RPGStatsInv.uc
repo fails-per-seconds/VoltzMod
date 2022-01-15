@@ -12,6 +12,15 @@ var bool bMagicWeapons;
 var bool bSentInitialData;
 var int ClientVersion;
 
+//AUD stuff
+var int Credit, KillCount;
+
+var array<Class<Weapon> > WeaponsList;
+var array<int> WeaponCost;
+
+var array<Class<RPGArtifact> >ArtifactsList;
+var array<int> ArtifactCost;
+
 struct OldRPGWeaponInfo
 {
 	var RPGWeapon Weapon;
@@ -41,10 +50,12 @@ replication
 	reliable if (bNetDirty && Role == ROLE_Authority)
 		Data;
 	reliable if (Role < ROLE_Authority)
-		ServerAddPointTo, ServerAddAbility, ServerRequestPlayerLevels, ServerResetData, ServerSetVersion;
+		ServerAddPointTo, ServerAddAbility, ServerRequestPlayerLevels, ServerResetData, ServerSetVersion,
+		ServerAddKillCount, ServerAddCredit, ServerGiveWeapon, ServerGiveArtifact;
 	reliable if (Role == ROLE_Authority)
 		ClientUpdateStatMenu, ClientAddAbility, ClientAdjustFireRate, ClientSendPlayerLevel, ClientReInitMenu,
-		ClientResetData, ClientReceiveAbilityInfo, ClientReceiveAllowedAbility, ClientReceiveStatCap, ClientModifyVehicle, ClientUnModifyVehicle;
+		ClientResetData, ClientReceiveAbilityInfo, ClientReceiveAllowedAbility, ClientReceiveStatCap, ClientModifyVehicle, ClientUnModifyVehicle,
+		ClientAddKillCount, ClientAddCredit, ClientReceiveWeapon, ClientGiveWeapon, ClientReceiveArtifact, ClientGiveArtifact;
 	unreliable if (Role == ROLE_Authority)
 		ClientAdjustMaxAmmo;
 }
@@ -65,6 +76,8 @@ function GiveTo(pawn Other, optional Pickup Pickup)
 			S.SetTimer(S.AmmoRegenTime, true);
 	}
 
+	ServerAddCredit(RPGMut.StartingCredit);
+
 	if (!bSentInitialData)
 	{
 		if (Instigator.Controller != Level.GetLocalPlayerController())
@@ -74,6 +87,10 @@ function GiveTo(pawn Other, optional Pickup Pickup)
 			ClientReceiveAllowedAbility(x, RPGMut.Abilities[x]);
 		for (x = 0; x < 6; x++)
 			ClientReceiveStatCap(x, RPGMut.StatCaps[x]);
+		for (x = 0; x < RPGMut.WeaponsList.length; x++)
+			ClientReceiveWeapon(x, RPGMut.WeaponsList[x].WeaponClass,RPGMut.WeaponsList[x].WeaponCost);
+		for (x = 0; x < RPGMut.ArtifactsList.length; x++)
+			ClientReceiveArtifact(x, RPGMut.ArtifactsList[x].ArtifactClass, RPGMut.ArtifactsList[x].ArtifactCost);
 
 		bMagicWeapons = (RPGMut.WeaponModifierChance > 0);
 
@@ -751,6 +768,150 @@ simulated function ClientUnModifyVehicle(Vehicle V)
 {
 	if (V != None)
 		UnModifyVehicle(V);
+}
+
+//AUD stuff
+function ServerAddKillCount(int Amount)
+{
+	KillCount += Amount;
+
+	ClientAddKillCount(Amount);
+}
+
+simulated function ClientAddKillCount(int Amount)
+{
+	if (Level.NetMode == NM_Client)
+		KillCount += Amount;
+}
+
+simulated function ClientReceiveWeapon(int Index, class<Weapon> sWep, int wepCost)
+{
+	WeaponsList[Index] = sWep;
+	WeaponCost[Index] =  wepCost;
+}
+
+simulated function ClientReceiveArtifact(int Index, class<RPGArtifact> sArt, int artCost)
+{
+	ArtifactsList[Index] = sArt;
+	ArtifactCost[Index] =  artCost;
+}
+
+function ServerGiveWeapon(String oldName, int Cost)
+{
+	local string newName;
+	local class<Weapon> WeaponClass;
+	local class<RPGWeapon> RPGWeaponClass;
+	local Weapon NewWeapon;
+	local RPGWeapon RPGWeapon;
+
+	if (RPGMut == None)
+		return;
+
+	if (oldName == "")
+		return;
+
+	if (Credit < Cost)
+		return;
+
+	newName = Level.Game.BaseMutator.GetInventoryClassOverride(oldName);
+	WeaponClass = class<Weapon>(DynamicLoadObject(newName, class'Class'));
+	newWeapon = Spawn(WeaponClass, Instigator,,, rot(0,0,0));
+	if (newWeapon == None)
+		return;
+
+	while(newWeapon.IsA('RPGWeapon'))
+		newWeapon = RPGWeapon(newWeapon).ModifiedWeapon;
+
+	RPGWeaponClass = RPGMut.GetRandomWeaponModifier(WeaponClass, Instigator);
+
+	RPGWeapon = Spawn(RPGWeaponClass, Instigator,,, rot(0,0,0));
+	if (RPGWeapon == None)
+		return;
+
+	RPGWeapon.Generate(None);
+	if (RPGWeapon == None)
+		return;
+
+	RPGWeapon.SetModifiedWeapon(newWeapon, true);
+	if (RPGWeapon == None)
+		return;
+
+	RPGWeapon.GiveTo(Instigator);
+	if (RPGWeapon == None)
+		return;
+
+	RPGWeapon.MaxOutAmmo();
+
+	Credit -= Cost;
+	ClientGiveWeapon(RPGWeapon, Cost);
+}
+
+function ServerGiveArtifact(Pawn Other, string artName, int Cost)
+{
+	local string NewName;
+	local class<RPGArtifact> RPGArtifactClass;
+	local RPGArtifact NewArtifact;
+
+	if (Credit < Cost)
+		return;
+
+	if (Other.IsA('Monster'))
+		return;
+
+	if (artName == "")
+		return;
+
+	if (Other.FindInventoryType(RPGArtifactClass) != None)
+		return;
+
+	NewName = Level.Game.BaseMutator.GetInventoryClassOverride(artName);
+	RPGArtifactClass = class<RPGArtifact>(DynamicLoadObject(NewName, class'Class'));
+	NewArtifact = Other.Spawn(RPGArtifactClass, Instigator,,, rot(0,0,0));
+	if (NewArtifact == None)
+		return;
+
+	NewArtifact.giveTo(Other);
+
+	Credit -= Cost;
+	ClientGiveArtifact(NewArtifact, Cost);
+}
+
+simulated function ClientGiveWeapon(RPGWeapon aWeapon, int Cost)
+{
+	if (Level.NetMode == NM_Client)
+    {
+		Instigator.GiveWeapon(string(aWeapon));
+		Credit -= Cost;
+    }
+}
+
+simulated function ClientGiveArtifact(RPGArtifact cArtifact, int Cost)
+{
+	if (Level.NetMode == NM_Client)
+		Credit -= Cost;
+}
+
+function ServerAddCredit(int Amount)
+{
+	if (Credit > 15000)
+		return;
+
+	Credit += Amount;
+
+	if (Amount > 15000)
+	{
+		Instigator.ClientMessage("Credits limit reached!");
+		Credit -= Amount;
+		return;
+	}
+
+	ClientAddCredit(Amount);
+}
+
+simulated function ClientAddCredit(int Amount)
+{
+	if (Level.NetMode == NM_Client)
+		Credit += Amount;
 }
 
 defaultproperties

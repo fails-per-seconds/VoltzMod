@@ -17,6 +17,7 @@ var config int StatCaps[6];
 var config array<class<RPGAbility> > Abilities;
 var config array<class<RPGAbility> > RemovedAbilities;
 var config float WeaponModifierChance;
+var config int MonsterLevel;
 
 struct WeaponModifier
 {
@@ -48,9 +49,27 @@ var config array<name> SuperAmmoClassNames;
 var config array< class<Monster> > ConfigMonsterList;
 var array< class<Monster> > MonsterList;
 
-var localized string PropsDisplayText[21];
-var localized string PropsDescText[21];
+var localized string PropsDisplayText[24];
+var localized string PropsDescText[24];
 var localized string PropsExtras;
+
+//AUD stuff
+struct WeaponsInfo
+{
+	var Class<Weapon> WeaponClass;
+	var int WeaponCost;
+};
+var config array<WeaponsInfo> WeaponsList;
+
+struct ArtifactsInfo
+{
+	var Class<RPGArtifact> ArtifactClass;
+	var int ArtifactCost;
+};
+var config array<ArtifactsInfo> ArtifactsList;
+
+var config int StartingCredit, CreditPerKill;
+var config int KillCounter;
 
 static final function int GetVersion()
 {
@@ -274,6 +293,7 @@ function bool CheckReplacement(Actor Other, out byte bSuperRelevant)
 
 	if (Other.IsA('Monster'))
 	{
+		Monster(Other).ScoringValue = Monster(Other).ScoringValue + (Monster(Other).Health * 0.035);
 		Pawn(Other).HealthMax = Pawn(Other).Health;
 		w = spawn(class'FakeMonsterWeapon',Other,,,rot(0,0,0));
 		w.GiveTo(Pawn(Other));
@@ -1138,10 +1158,6 @@ function GetServerDetails(out GameInfo.ServerResponseLine ServerState)
 	i = ServerState.ServerInfo.Length;
 
 	ServerState.ServerInfo.Length = i+1;
-	ServerState.ServerInfo[i].Key = "FPS Version";
-	ServerState.ServerInfo[i++].Value = ""$(RPG_VERSION / 10)$"."$int(RPG_VERSION % 10);
-
-	ServerState.ServerInfo.Length = i+1;
 	ServerState.ServerInfo[i].Key = "Starting Level";
 	ServerState.ServerInfo[i++].Value = string(StartingLevel);
 
@@ -1179,21 +1195,13 @@ function GetServerDetails(out GameInfo.ServerResponseLine ServerState)
 	}
 
 	ServerState.ServerInfo.Length = i+1;
-	ServerState.ServerInfo[i].Key = "Magic Weapon Chance";
-	ServerState.ServerInfo[i++].Value = string(int(WeaponModifierChance*100))$"%";
-
-	ServerState.ServerInfo.Length = i+1;
 	ServerState.ServerInfo[i].Key = "Magical Starting Weapons";
 	ServerState.ServerInfo[i++].Value = string(bMagicalStartingWeapons);
-
-	ServerState.ServerInfo.Length = i+1;
-	ServerState.ServerInfo[i].Key = "Artifacts";
-	ServerState.ServerInfo[i++].Value = string(class'RPGArtifactManager'.default.MaxArtifacts > 0 && class'RPGArtifactManager'.default.ArtifactDelay > 0);
 
 	if (Level.Game.IsA('Invasion'))
 	{
 		ServerState.ServerInfo.Length = i+1;
-		ServerState.ServerInfo[i].Key = "Auto Adjust Invasion Monster Level";
+		ServerState.ServerInfo[i].Key = "Adjusted Monster Level";
 		ServerState.ServerInfo[i++].Value = string(bAutoAdjustInvasionLevel);
 		if (bAutoAdjustInvasionLevel)
 		{
@@ -1202,10 +1210,6 @@ function GetServerDetails(out GameInfo.ServerResponseLine ServerState)
 			ServerState.ServerInfo[i++].Value = string(InvasionAutoAdjustFactor);
 		}
 	}
-
-	ServerState.ServerInfo.Length = i+1;
-	ServerState.ServerInfo[i].Key = "Ironman Mode";
-	ServerState.ServerInfo[i++].Value = string(bIronmanMode);
 }
 
 event bool OverrideDownload(string PlayerIP, string PlayerID, string PlayerURL, out string RedirectURL)
@@ -1309,6 +1313,9 @@ static function FillPlayInfo(PlayInfo PlayInfo)
 	PlayInfo.AddSetting("fps", "bIronmanMode", default.PropsDisplayText[i++], 4, 10, "Check",,,, true);
 	PlayInfo.AddSetting("fps", "bUseOfficialRedirect", default.PropsDisplayText[i++], 4, 10, "Check",,, true, true);
 	PlayInfo.AddSetting("fps", "BotBonusLevels", default.PropsDisplayText[i++], 4, 10, "Text", "2;0:99",,, true);
+	PlayInfo.AddSetting("fps", "StartingCredit", default.PropsDisplayText[i++], 1, 16, "Text", "4;0:9999");
+	PlayInfo.AddSetting("fps", "CreditPerKill", default.PropsDisplayText[i++], 1, 17, "Text", "4;0:9999");
+	PlayInfo.AddSetting("fps", "MonsterLevel", default.PropsDisplayText[i++], 1, 18, "Text", "5;1:1000");
 
 	class'RPGArtifactManager'.static.FillPlayInfo(PlayInfo);
 }
@@ -1338,7 +1345,28 @@ static function string GetDescriptionText(string PropName)
 		case "bIronmanMode":		return default.PropsDescText[18];
 		case "bUseOfficialRedirect":	return default.PropsDescText[19];
 		case "BotBonusLevels":		return default.PropsDescText[20];
+		case "StartingCredit":		return default.PropsDescText[21];
+		case "CreditPerKill":		return default.PropsDescText[22];
+		case "MonsterLevel":		return default.PropsDescText[23];
 	}
+}
+
+function RPGStatsInv GetStatsInvFor(Controller C, optional bool bMustBeOwner)
+{
+	local Inventory Inv;
+
+	for (Inv = C.Inventory; Inv != None; Inv = Inv.Inventory)
+		if (Inv.IsA('RPGStatsInv') && (!bMustBeOwner || Inv.Owner == C || Inv.Owner == C.Pawn || (Vehicle(C.Pawn) != None && Inv.Owner == Vehicle(C.Pawn).Driver)))
+			return RPGStatsInv(Inv);
+
+	if (C.Pawn != None)
+	{
+		Inv = C.Pawn.FindInventoryType(class'RPGStatsInv');
+		if (Inv != None && (!bMustBeOwner || Inv.Owner == C || Inv.Owner == C.Pawn || (Vehicle(C.Pawn) != None && Inv.Owner == Vehicle(C.Pawn).Driver)))
+			return RPGStatsInv(Inv);
+	}
+
+	return None;
 }
 
 defaultproperties
@@ -1393,7 +1421,7 @@ defaultproperties
      Abilities[18]=Class'fps.AbilityFastSwitch'
      Abilities[19]=Class'fps.AbilityAwareness'
      Abilities[20]=Class'fps.AbilityMonsterSummon'
-     WeaponModifierChance=0.150000
+     WeaponModifierChance=0.100000
      WeaponModifiers[0]=(WeaponClass=Class'fps.RW_Damage',Chance=4)
      WeaponModifiers[1]=(WeaponClass=Class'fps.RW_Energy',Chance=2)
      WeaponModifiers[2]=(WeaponClass=Class'fps.RW_Force',Chance=2)
@@ -1413,10 +1441,28 @@ defaultproperties
      WeaponModifiers[16]=(WeaponClass=Class'fps.RW_Sturdy',Chance=3)
      WeaponModifiers[17]=(WeaponClass=Class'fps.RW_Vampire',Chance=1)
      WeaponModifiers[18]=(WeaponClass=Class'fps.RW_Vorpal',Chance=1)
+	 MonsterLevel=5
+     StartingCredit=0
+     CreditPerKill=17
+	 KillCounter=1
+	 WeaponsList(0)=(WeaponClass=Class'xWeapons.TransLauncher',WeaponCost=50)
+     //WeaponsList(1)=(WeaponClass=Class'fpsWeapons.PowerShieldGun',WeaponCost=1000)
+     //WeaponsList(2)=(WeaponClass=Class'fpsWeapons.MP5Gun',WeaponCost=1500)
+     //WeaponsList(3)=(WeaponClass=Class'fpsWeapons.pgPortalGun',WeaponCost=2500)
+     //WeaponsList(4)=(WeaponClass=Class'fpsWeapons.MagicWandWeapon',WeaponCost=3300)
+     //WeaponsList(5)=(WeaponClass=Class'fpsWeapons.MatrixFlakGun',WeaponCost=5000)
+     //WeaponsList(6)=(WeaponClass=Class'fpsWeapons.NuclearShockRifle',WeaponCost=7500)
+     //WeaponsList(7)=(WeaponClass=Class'fpsWeapons.LilLady',WeaponCost=8500)
+     //WeaponsList(8)=(WeaponClass=Class'fpsWeapons.DeathCannon',WeaponCost=10000)
+     ArtifactsList(0)=(ArtifactClass=Class'fps.ArtifactMagicMaker',ArtifactCost=1000)
+     //ArtifactsList(1)=(ArtifactClass=Class'fps.ArtifactResurrection',ArtifactCost=1250)
+     //ArtifactsList(2)=(ArtifactClass=Class'fps.ArtifactLightningSpire',ArtifactCost=4200)
+     //ArtifactsList(3)=(ArtifactClass=Class'fps.ArtifactGodlyness',ArtifactCost=7250)
      Version=30
+	 bNoUnidentified=true
      bAutoAdjustInvasionLevel=false
      bFakeBotLevels=false
-     bUseOfficialRedirect=True
+     bUseOfficialRedirect=true
      InvasionAutoAdjustFactor=0.100000
      SuperAmmoClassNames[0]="RedeemerAmmo"
      SuperAmmoClassNames[1]="BallAmmo"
@@ -1442,6 +1488,9 @@ defaultproperties
      PropsDisplayText(18)="Ironman Mode"
      PropsDisplayText(19)="Use Official Redirect Server"
      PropsDisplayText(20)="Extra Bot Levelups After Match"
+	 PropsDisplayText(21)="Starting Credit"
+     PropsDisplayText(22)="Credits Per Kill"
+     PropsDisplayText(23)="Monsters Starting Level"
      PropsDescText(0)="During the game, all data will be saved every this many seconds."
      PropsDescText(1)="New players start at this Level."
      PropsDescText(2)="The number of stat points earned from a levelup."
@@ -1463,6 +1512,9 @@ defaultproperties
      PropsDescText(18)="If checked, only the winning player or team's data is saved - the losers lose the experience they gained that match."
      PropsDescText(19)="If checked, the server will redirect clients to a special official redirect server for files (all other files will continue to use the normal redirect server, if any)"
      PropsDescText(20)="If Fake Bot Levels is off, bots gain this many extra levels after a match because individual bots don't play often."
+	 PropsDescText(21)="Amount of credits you start with. (works even after death)"
+     PropsDescText(22)="(Random) Amount of credits per kill"
+     PropsDescText(23)="Monsters start at this level"
      PropsExtras="0;Add Specified Value;1;Add Specified Percent"
      bAddToServerPackages=True
      GroupName="RPG"
