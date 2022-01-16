@@ -8,6 +8,7 @@ var() int MaxValue;
 
 function InitComponent(GUIController MyController, GUIComponent MyOwner)
 {
+	MyNum.bIntOnly = True;
 	if (MinValue < 0)
 		MyNum.bIncludeSign = True;
 
@@ -133,7 +134,7 @@ function MaskText(bool b)
 defaultproperties
 {
      Value="0"
-     MinValue=-9999
+     MinValue=1
      MaxValue=9999
      bReadOnly=False
      CaptionWidth=0.010000
@@ -142,5 +143,5 @@ defaultproperties
      LabelColor=(R=255,G=255,B=255,A=255)
      PropagateVisibility=False
      WinHeight=0.060000
-     //bAcceptsInput=True
+     bAcceptsInput=True
 }

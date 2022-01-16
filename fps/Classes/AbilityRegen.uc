@@ -3,22 +3,27 @@ class AbilityRegen extends CostRPGAbility
 
 static simulated function ModifyPawn(Pawn Other, int AbilityLevel)
 {
-	local RegenInv R;
+	local RegenHealthInv R;
 	local Inventory Inv;
 
 	if (Other.Role != ROLE_Authority)
 		return;
 
-	Inv = Other.FindInventoryType(class'RegenInv');
+	Inv = Other.FindInventoryType(class'RegenHealthInv');
 	if (Inv != None)
 		Inv.Destroy();
 
-	R = Other.spawn(class'RegenInv', Other,,,rot(0,0,0));
-	R.GiveTo(Other);
+	if (R == None)
+	{
+		R = Other.spawn(class'RegenHealthInv', Other,,,rot(0,0,0));
+		R.GiveTo(Other);
+	}
 
-	R.bHealthRegen = true;
-	R.SetTimer(1, true);
-	R.RegenAmount = AbilityLevel;
+	if (R != None)
+	{
+		R.SetTimer(1, true);
+		R.RegenAmount = AbilityLevel;
+	}
 }
 
 defaultproperties

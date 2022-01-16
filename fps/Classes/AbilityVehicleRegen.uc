@@ -3,21 +3,27 @@ class AbilityVehicleRegen extends CostRPGAbility
 
 static simulated function ModifyPawn(Pawn Other, int AbilityLevel)
 {
-	local RegenInv R;
+	local RegenVehicleInv R;
 	local Inventory Inv;
 
 	if (Other.Role != ROLE_Authority)
 		return;
 
-	Inv = Other.FindInventoryType(class'RegenInv');
+	Inv = Other.FindInventoryType(class'RegenVehicleInv');
 	if (Inv != None)
 		Inv.Destroy();
 
-	R = Other.spawn(class'RegenInv', Other,,,rot(0,0,0));
-	R.bVehicleRegen = true;
-	R.SetTimer(1, true);
-	R.RegenAmount = AbilityLevel*2;
-	R.GiveTo(Other);
+	if (R == None)
+	{
+		R = Other.spawn(class'RegenVehicleInv', Other,,,rot(0,0,0));
+		R.GiveTo(Other);
+	}
+
+	if (R != None)
+	{
+		R.SetTimer(1, true);
+		R.RegenAmount = AbilityLevel*2;
+	}
 }
 
 defaultproperties

@@ -38,7 +38,6 @@ static function HandleDamage(int Damage, Pawn Injured, Pawn Instigator, out vect
 
 defaultproperties
 {
-     MinDB=50
      AbilityName="Armor Vampirism"
      Description="Whenever you damage another player from a vehicle or turret, it is healed for 3% of the damage per level (up to its starting health amount). You must have a Damage Bonus of at least 50 to purchase this ability. |Cost (per level): 10,15,20,25,30,35,40,45,50,55..."
      StartingCost=10

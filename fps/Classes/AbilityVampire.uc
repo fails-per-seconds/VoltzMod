@@ -47,7 +47,6 @@ static function LocalHandleDamage(int Damage, Pawn Injured, Pawn Instigator, out
 defaultproperties
 {
      AdjustableHealingDamage=50
-     MinDB=50
      AbilityName="Vampirism"
      Description="Whenever you damage an opponent, you are healed for 5% of the damage per level (up to your starting health amount + 50). You can't gain health from self-damage and you can't gain health from damage caused by the Retaliation ability. You must have a Damage Bonus of at least 50 to purchase this ability. |Cost (per level): 10,15,20,25,30,35,40,45,50..."
      StartingCost=10

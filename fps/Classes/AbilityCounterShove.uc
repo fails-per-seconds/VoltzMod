@@ -35,7 +35,6 @@ static function int BotBuyChance(Bot B, RPGPlayerDataObject Data, int CurrentLev
 
 defaultproperties
 {
-     MinDR=50
      AbilityName="CounterShove"
      Description="Whenever you are damaged by another player, some of the momentum per level is also done to the player who hurt you. Will not CounterShove a CounterShove. You must have a Damage Reduction of at least 50 to purchase this ability. (Max Level: 5)"
      StartingCost=15

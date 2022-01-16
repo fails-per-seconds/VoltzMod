@@ -484,33 +484,6 @@ function bool SubClassBuyClick(GUIComponent Sender)
 	return true;
 }
 
-function bool ShowAbilityDesc(GUIComponent Sender)
-{
-	local class<RPGAbility> Ability;
-	local int Maxl;
-	local string classtext;
-
-	Ability = class<RPGAbility>(Abilities.List.GetObject());
-	if (Ability == None)
-		return true;
-
-	Controller.OpenMenu(string(class'RPGAbilityDescMenuX'));
-	RPGAbilityDescMenuX(Controller.TopPage()).t_WindowTitle.Caption = Ability.default.AbilityName;
-	RPGAbilityDescMenuX(Controller.TopPage()).MyScrollText.SetContent(Ability.default.Description);
-
-	if (GiveItems != None)
-	{
-		MaxL = GiveItems.MaxCanBuy(curSubClassLevel, Ability);
-	}
-	if (curClass == None)
-		classtext = "Class: None";
-	else
-		classtext = curClass.default.AbilityName;
-	RPGAbilityDescMenuX(Controller.TopPage()).MaxText.SetContent("Max Level for" @ classtext @ "SubClass:" @ DisplaySubClass @ "is" @ string(MaxL));
-
-	return true;
-}
-
 function bool MaxAbility(GUIComponent Sender)
 {
 	local int CurL, MaxL, y;

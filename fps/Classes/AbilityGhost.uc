@@ -79,7 +79,6 @@ static function bool PreventSever(Pawn Killed, name boneName, int Damage, class<
 defaultproperties
 {
      MinHealthBonus=200
-     MinDR=50
      LevelCost(1)=40
      LevelCost(2)=25
      LevelCost(3)=20
