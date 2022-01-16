@@ -54,6 +54,7 @@ function InitComponent(GUIController MyController, GUIComponent MyOwner)
 	Controls[31].Hide();	//store label
 	Controls[32].Hide();	//store list box
 	Controls[33].Hide();	//store buy button
+	Controls[34].Hide();	//store info
 }
 
 function bool ForcedSell()
@@ -291,6 +292,28 @@ function bool UpdateStoreButtons(GUIComponent Sender)
 		Controls[33].MenuStateChange(MSAT_Disabled);
 	else
 		Controls[33].MenuStateChange(MSAT_Blurry);
+
+	ShowStoreInfo();
+
+	return true;
+}
+
+function bool ShowStoreInfo()
+{
+	local class<Weapon> SWep;
+	local class<RPGArtifact> SArt;
+	local GUIScrollTextBox StoreDesc;
+
+	StoreDesc = GUIScrollTextBox(Controls[34]);
+	StoreDesc.MyScrollBar.WinWidth = 0.01;
+
+	SWep = class<Weapon>(StoreItem.List.GetObject());
+	if (SWep != None)
+		StoreDesc.SetContent(SWep.default.Description);
+
+	SArt = class<RPGArtifact>(StoreItem.List.GetObject());
+	if (SArt != None)
+		StoreDesc.SetContent(SArt.default.Description);
 
 	return true;
 }
@@ -555,6 +578,7 @@ function bool HomeClick(GUIComponent Sender)
 	Controls[31].Hide();	//store label
 	Controls[32].Hide();	//store list box
 	Controls[33].Hide();	//store buy button
+	Controls[34].Hide();	//store info
 
 	InitFor(StatsInv);
 	return true;
@@ -596,6 +620,7 @@ function bool StoreClick(GUIComponent Sender)
 	Controls[31].Show();	//store label
 	Controls[32].Show();	//store list box
 	Controls[33].Show();	//store buy button
+	Controls[34].Show();	//store info
 
 	InitFor(StatsInv);
 	return true;
@@ -735,11 +760,26 @@ defaultproperties
          WinTop=0.570000
          WinLeft=0.582000
          WinWidth=0.100000
-         WinHeight=0.060000
+         WinHeight=0.040000
          bBoundToParent=True
          bScaleToParent=True
          OnClick=RPGStatsMenuX.BuyStoreItem
          OnKeyEvent=StoreBuyButton.InternalOnKeyEvent
      End Object
      Controls(33)=GUIButton'fps.RPGStatsMenuX.StoreBuyButton'
+
+     Begin Object Class=GUIScrollTextBox Name=StoreInfo
+         CharDelay=0.002500
+         EOLDelay=0.002500
+         OnCreateComponent=StoreInfo.InternalOnCreateComponent
+         StyleName="AbilityList"
+         WinTop=0.627000
+         WinLeft=0.163000
+         WinWidth=0.938500
+         WinHeight=0.223000
+         bBoundToParent=True
+         bScaleToParent=True
+         bNeverFocus=True
+     End Object
+     Controls(34)=GUIScrollTextBox'fps.RPGStatsMenuX.StoreInfo'
 }

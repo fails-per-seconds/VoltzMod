@@ -385,4 +385,5 @@ defaultproperties
      PickupClass=Class'fps.ArtifactMagicMakerPickup'
      IconMaterial=Texture'XGameTextures.SuperPickups.Udamage'
      ItemName="Magic Maker"
+     Description="Random Magic Generator for your weapons. does not work on Super Weapon Types."
 }

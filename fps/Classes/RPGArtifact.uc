@@ -3,6 +3,7 @@ class RPGArtifact extends Powerups;
 var int CostPerSec;
 var float ActivatedTime, MinActivationTime;
 var localized string NotEnoughAdrenalineMessage;
+var localized string Description;
 
 replication
 {
