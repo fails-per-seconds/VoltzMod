@@ -7,7 +7,7 @@ var config float ShieldRegenRate, RegenPerLevel;
 
 static simulated function ModifyPawn(Pawn Other, int AbilityLevel)
 {
-	local RegenInv R;
+	local RegenShieldInv R;
 	local Inventory Inv;
 	local int MaxShield;
 
@@ -17,21 +17,24 @@ static simulated function ModifyPawn(Pawn Other, int AbilityLevel)
 	if (Other.Role != ROLE_Authority)
 		return;
 
-	Inv = Other.FindInventoryType(class'RegenInv');
+	Inv = Other.FindInventoryType(class'RegenShieldInv');
 	if (Inv != None)
 		Inv.Destroy();
 
-	R = Other.spawn(class'RegenInv', Other,,,rot(0,0,0));
 	if (R == None)
-		return;
-	R.bShieldRegen = true;
-	R.NoDamageDelay = default.NoDamageDelay;
-	MaxShield = default.ShieldPerLevel*AbilityLevel;
-	R.MaxShieldRegen = MaxShield;
-	R.SetTimer(1, true);
-	R.ShieldRegenRate = fmax(default.ShieldRegenRate,default.RegenPerLevel*float(AbilityLevel));
+	{
+		R = Other.spawn(class'RegenShieldInv', Other,,,rot(0,0,0));
+		R.GiveTo(Other);
+	}
 
-	R.GiveTo(Other);
+	if (R != None)
+	{
+		R.NoDamageDelay = default.NoDamageDelay;
+		MaxShield = default.ShieldPerLevel*AbilityLevel;
+		R.MaxShieldRegen = MaxShield;
+		R.SetTimer(1, true);
+		R.ShieldRegenRate = fmax(default.ShieldRegenRate,default.RegenPerLevel*float(AbilityLevel));
+	}
 
 	Other.AddShieldStrength(MaxShield);
 }

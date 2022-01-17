@@ -55,7 +55,6 @@ static function ScoreKill(Controller Killer, Controller Killed, bool bOwnedByKil
 defaultproperties
 {
      MinAdrenalineMax=150
-     MinDB=50
      AbilityName="Adrenal Surge"
      Description="For each level of this ability, you gain 50% more adrenaline from all kill related adrenaline bonuses. You must have a Damage Bonus of at least 50 and an Adrenaline Max stat at least 150 to purchase this ability. |Cost (per level): 2,8..."
      StartingCost=2

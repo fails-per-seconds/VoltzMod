@@ -3,7 +3,7 @@ class AbilityCautiousness extends RPGAbility
 
 static simulated function int Cost(RPGPlayerDataObject Data, int CurrentLevel)
 {
-	if (Data.HealthBonus < 50 || Data.Defense < 25)
+	if (Data.HealthBonus < 50)
 		return 0;
 	else
 		return Super.Cost(Data, CurrentLevel);

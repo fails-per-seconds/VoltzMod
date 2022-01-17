@@ -109,6 +109,7 @@ function ScoreKill(Controller Killer, Controller Killed)
 	local RPGStatsInv StatsInv, KillerStatsInv;
 	local vector TossVel, U, V, W;
 	local class<Weapon> LastWeapon;
+	local int newscore;
 
 	if (Killed == None)
 	{
@@ -148,6 +149,7 @@ function ScoreKill(Controller Killer, Controller Killed)
 		StatsInv = GetStatsInvFor(Killer);
 		if (StatsInv != None)
 		{
+			newscore = Monster(Killed.Pawn).ScoringValue;
 			KillerData = StatsInv.DataObject;
 			for (x = 0; x < KillerData.Abilities.length; x++)
 				KillerData.Abilities[x].static.ScoreKill(Killer, Killed, true, KillerData.AbilityLevels[x]);
@@ -157,7 +159,9 @@ function ScoreKill(Controller Killer, Controller Killed)
 			}
 			else
 			{
-				ShareExperience(StatsInv, 1.0);
+				ShareExperience(StatsInv, float(newscore));
+				StatsInv.ServerAddKillCount(RPGMut.KillCounter);
+				StatsInv.ServerAddCredit(Rand(RPGMut.CreditPerKill));
 			}
 		}
 		return;
@@ -297,7 +301,7 @@ function int NetDamage(int OriginalDamage, int Damage, pawn injured, pawn instig
 	{
 		if (Level.Game.IsA('Invasion'))
 		{
-			MonsterLevel = (Invasion(Level.Game).WaveNum + 1) * 2;
+			MonsterLevel = ((Invasion(Level.Game).WaveNum + 1) * 2) + RPGMut.MonsterLevel;
 			if (RPGMut.bAutoAdjustInvasionLevel && RPGMut.CurrentLowestLevelPlayer != None)
 				MonsterLevel += Max(0, RPGMut.CurrentLowestLevelPlayer.Level * RPGMut.InvasionAutoAdjustFactor);
 		}
@@ -506,7 +510,7 @@ function Timer()
 	local Controller C;
 	local Inventory Inv;
 	local RPGStatsInv StatsInv;
-	local int x;
+	local int x, WinExp;
 
 	if (Level.Game.bGameEnded)
 	{
@@ -516,9 +520,10 @@ function Timer()
 				if (C.PlayerReplicationInfo != None && C.PlayerReplicationInfo.Team == Level.Game.GameReplicationInfo.Winner)
 				{
 					StatsInv = GetStatsInvFor(C);
+					WinExp = (StatsInv.KillCount + StatsInv.DataObject.NeededExp) * Rand(5);
 					if (StatsInv != None)
 					{
-						StatsInv.DataObject.Experience += RPGMut.EXPForWin;
+						StatsInv.DataObject.Experience += WinExp;
 						RPGMut.CheckLevelUp(StatsInv.DataObject, C.PlayerReplicationInfo);
 					}
 				}

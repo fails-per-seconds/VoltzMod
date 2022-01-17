@@ -23,32 +23,6 @@ function InitComponent(GUIController MyController, GUIComponent MyOwner)
 	PointsAvailableBox = AemoBox(Controls[8]);
 	Abilities = AeListBox(Controls[15]);
 	Abilities.MyScrollBar.WinWidth = 0.01;
-
-//controls
-	Controls[0].Show();	//background
-	Controls[1].Show();	//close
-	Controls[2].Show();	//fire-rate
-	Controls[3].Show();	//health
-	Controls[4].Show();	//adren
-	Controls[5].Hide();	//db
-	Controls[6].Hide();	//dr
-	Controls[7].Show();	//ammo
-	Controls[8].Show();	//AP
-	Controls[9].Show();	//+ firerate
-	Controls[10].Show();	//+ health
-	Controls[11].Show();	//+ adren
-	Controls[12].Hide();	//+ db
-	Controls[13].Hide();	//+ dr
-	Controls[14].Show();	//+ ammo
-	Controls[15].Show();	//abilitylist
-	Controls[16].Show();	//buy
-	Controls[17].Show();	//5 firerate
-	Controls[18].Show();	//5 health
-	Controls[19].Show();	//5 adren
-	Controls[20].Hide();	//5 db
-	Controls[21].Hide();	//5 dr
-	Controls[22].Show();	//5 ammo
-	Controls[23].Show();	//reset
 }
 
 function bool CloseClick(GUIComponent Sender)
@@ -205,17 +179,6 @@ function bool UpdateAbilityButtons(GUIComponent Sender)
 		Controls[16].MenuStateChange(MSAT_Disabled);
 	else
 		Controls[16].MenuStateChange(MSAT_Blurry);
-
-	return true;
-}
-
-function bool ShowAbilityDesc(GUIComponent Sender)
-{
-	local class<RPGAbility> Ability;
-
-	Ability = class<RPGAbility>(Abilities.List.GetObject());
-
-	RPGAbilityDescMenu(Controller.TopPage()).MyScrollText.SetContent(Ability.default.Description);
 
 	return true;
 }
@@ -472,7 +435,6 @@ defaultproperties
 
      Begin Object Class=AemoNum Name=WeaponSpeedAmt
          Value="5"
-         MinValue=1
          WinTop=0.270000
          WinLeft=0.357500
          WinWidth=0.080000
@@ -484,7 +446,6 @@ defaultproperties
 
      Begin Object Class=AemoNum Name=HealthBonusAmt
          Value="5"
-         MinValue=1
          WinTop=0.370000
          WinLeft=0.357500
          WinWidth=0.080000
@@ -496,7 +457,6 @@ defaultproperties
 
      Begin Object Class=AemoNum Name=AdrenalineMaxAmt
          Value="5"
-         MinValue=1
          WinTop=0.470000
          WinLeft=0.357500
          WinWidth=0.080000
@@ -508,27 +468,28 @@ defaultproperties
 
      Begin Object Class=AemoNum Name=AttackAmt
          Value="5"
-         MinValue=1
          WinTop=0.357448
          WinLeft=0.645000
          WinWidth=0.080000
+         bBoundToParent=True
+         bScaleToParent=True
          OnDeActivate=AttackAmt.ValidateValue
      End Object
      Controls(20)=AemoNum'fps.RPGStatsMenu.AttackAmt'
 
      Begin Object Class=AemoNum Name=DefenseAmt
          Value="5"
-         MinValue=1
          WinTop=0.437448
          WinLeft=0.645000
          WinWidth=0.080000
+         bBoundToParent=True
+         bScaleToParent=True
          OnDeActivate=DefenseAmt.ValidateValue
      End Object
      Controls(21)=AemoNum'fps.RPGStatsMenu.DefenseAmt'
 
      Begin Object Class=AemoNum Name=MaxAmmoAmt
          Value="5"
-         MinValue=1
          WinTop=0.570000
          WinLeft=0.357500
          WinWidth=0.080000

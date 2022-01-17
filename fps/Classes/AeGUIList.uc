@@ -2,7 +2,7 @@ class AeGUIList extends GUIList;
 
 defaultproperties
 {
-     bDrawSelectionBorder=False
+     bDrawSelectionBorder=True
      SelectedStyleName="MyList"
      SectionStyleName="ListSection"
      OutlineStyleName="ItemOutline"

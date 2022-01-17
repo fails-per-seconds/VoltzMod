@@ -47,7 +47,6 @@ static function ScoreKill(Controller Killer, Controller Killed, bool bOwnedByKil
 defaultproperties
 {
      MinHealthBonus=150
-     MinDB=50
      AbilityName="Life Surge"
      Description="For each level of this ability, you gain health from all kills. You must have at least 50 Damage Bonus and at least 150 Health Bonus stat at least 150 to purchase this ability. |Cost (per level): 5,6,7..."
      StartingCost=5

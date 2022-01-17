@@ -24,32 +24,37 @@ static simulated function int GetCost(RPGPlayerDataObject Data, int CurrentLevel
 
 static simulated function ModifyPawn(Pawn Other, int AbilityLevel)
 {
-	local RegenInv R;
+	local RegenAdrenInv R;
 	local Inventory Inv;
 
 	if (Other.Role != ROLE_Authority)
 		return;
 
-	Inv = Other.FindInventoryType(class'RegenInv');
+	Inv = Other.FindInventoryType(class'RegenAdrenInv');
 	if (Inv != None)
 		Inv.Destroy();
 
-	R = Other.spawn(class'RegenInv', Other,,,rot(0,0,0));
-	R.GiveTo(Other);
-
-	R.bAdrenRegen = true;
-	if (AbilityLevel >= 3)
+	if (R == None)
 	{
-		R.RegenAmount *= (AbilityLevel - 2);
-		if (AbilityLevel > 3)
-			R.bAlwaysGive = true;
-		R.SetTimer(1, true);
-		R.WaveBonus = 5;
+		R = Other.spawn(class'RegenAdrenInv', Other,,,rot(0,0,0));
+		R.GiveTo(Other);
 	}
-	else
+
+	if (R != None)
 	{
-		R.SetTimer(4 - AbilityLevel, true);
-		R.WaveBonus = AbilityLevel;
+		if (AbilityLevel >= 3)
+		{
+			R.RegenAmount *= (AbilityLevel - 2);
+			if (AbilityLevel > 3)
+				R.bAlwaysGive = true;
+			R.SetTimer(1, true);
+			R.WaveBonus = 5;
+		}
+		else
+		{
+			R.SetTimer(4 - AbilityLevel, true);
+			R.WaveBonus = AbilityLevel;
+		}
 	}
 }
 
