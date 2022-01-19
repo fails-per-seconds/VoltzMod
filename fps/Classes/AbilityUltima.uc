@@ -37,10 +37,11 @@ static function ScoreKill(Controller Killer, Controller Killed, bool bOwnedByKil
 
 defaultproperties
 {
-     ExcludingAbilities(0)=Class'fps.AbilityUltima'
-     ExcludingAbilities(1)=Class'fps.AbilityGhost'
+     AbilityCantBuyColor=(R=164,G=14,B=122,A=200)
+     AbilityMaxColor=(R=1,G=1,B=1,A=200)
      AbilityName="Ultima"
-     Description="This ability causes your body to release energy when you die. The energy will collect at a single point which will then cause a Redeemer-like nuclear explosion. Level 2 of this ability causes the energy to collect for the explosion in half the time. The ability will only trigger if you have killed at least one enemy during your life. You need to have a Damage Bonus stat of at least 80 to purchase this ability. (Max Level: 2)|Cost (per level): 50,50"
+     DescColor(0)=(R=255,G=255,B=255,A=220)
+     Description(0)="This ability causes your body to release energy when you die. The energy will collect at a single point which will then cause a Redeemer-like nuclear explosion. Level 2 of this ability causes the energy to collect for the explosion in half the time. The ability will only trigger if you have killed at least one enemy during your life. You need to have a Damage Bonus stat of at least 80 to purchase this ability. (Max Level: 2)|Cost (per level): 50,50"
      StartingCost=50
      MaxLevel=4
 }

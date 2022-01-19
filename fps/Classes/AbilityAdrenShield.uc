@@ -79,8 +79,11 @@ defaultproperties
 {
      HealthLimit=5
      HealthBonus=1.000000
+     AbilityCantBuyColor=(R=164,G=14,B=122,A=200)
+     AbilityMaxColor=(R=1,G=1,B=1,A=200)
      AbilityName="Energy Shield"
-     Description="Uses adrenaline as a shield. Cost (per level): 15."
+     DescColor(0)=(R=255,G=255,B=255,A=220)
+     Description(0)="Uses adrenaline as a shield. Cost (per level): 15."
      StartingCost=15
      MaxLevel=4
 }

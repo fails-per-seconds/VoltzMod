@@ -34,8 +34,11 @@ static function bool HasActiveArtifact(Pawn Instigator)
 
 defaultproperties
 {
+     AbilityCantBuyColor=(R=164,G=14,B=122,A=200)
+     AbilityMaxColor=(R=1,G=1,B=1,A=200)
      AbilityName="Energy Leech"
-     Description="Whenever you damage another player, you gain 1% of the damage as adrenaline. Each level increases this by 1%. |Cost (per level): 2,8,14,..."
+     DescColor(0)=(R=255,G=255,B=255,A=220)
+     Description(0)="Whenever you damage another player, you gain 1% of the damage as adrenaline. Each level increases this by 1%. |Cost (per level): 2,8,14,..."
      StartingCost=2
      CostAddPerLevel=6
      MaxLevel=20

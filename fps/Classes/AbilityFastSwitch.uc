@@ -38,8 +38,11 @@ static simulated function ModifyWeapon(Weapon Weapon, int AbilityLevel)
 
 defaultproperties
 {
+     AbilityCantBuyColor=(R=164,G=14,B=122,A=200)
+     AbilityMaxColor=(R=1,G=1,B=1,A=200)
      AbilityName="Speed Switcher"
-     Description="For each level of this ability, you switch weapons 50% faster. You need to have at least 50 Weapon Speed before you can purchase this ability. (Max Level: 2)"
+     DescColor(0)=(R=255,G=255,B=255,A=220)
+     Description(0)="For each level of this ability, you switch weapons 50% faster. You need to have at least 50 Weapon Speed before you can purchase this ability. (Max Level: 2)"
      StartingCost=15
      CostAddPerLevel=5
      BotChance=3

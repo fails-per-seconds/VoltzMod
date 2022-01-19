@@ -80,8 +80,11 @@ defaultproperties
 {
      LevMultiplier=0.000500
      MaxIncrease=2.000000
+     AbilityCantBuyColor=(R=164,G=14,B=122,A=200)
+     AbilityMaxColor=(R=1,G=1,B=1,A=200)
      AbilityName="Weapons Proficiency"
-     Description="Tracks the kills per weapon, and adds extra damage the more you kill. |Cost (per level): 20. "
+     DescColor(0)=(R=255,G=255,B=255,A=220)
+     Description(0)="Tracks the kills per weapon, and adds extra damage the more you kill. |Cost (per level): 20. "
      StartingCost=20
      MaxLevel=10
 }

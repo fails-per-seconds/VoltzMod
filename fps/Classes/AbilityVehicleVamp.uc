@@ -38,8 +38,11 @@ static function HandleDamage(int Damage, Pawn Injured, Pawn Instigator, out vect
 
 defaultproperties
 {
+     AbilityCantBuyColor=(R=164,G=14,B=122,A=200)
+     AbilityMaxColor=(R=1,G=1,B=1,A=200)
      AbilityName="Armor Vampirism"
-     Description="Whenever you damage another player from a vehicle or turret, it is healed for 3% of the damage per level (up to its starting health amount). You must have a Damage Bonus of at least 50 to purchase this ability. |Cost (per level): 10,15,20,25,30,35,40,45,50,55..."
+     DescColor(0)=(R=255,G=255,B=255,A=220)
+     Description(0)="Whenever you damage another player from a vehicle or turret, it is healed for 3% of the damage per level (up to its starting health amount). You must have a Damage Bonus of at least 50 to purchase this ability. |Cost (per level): 10,15,20,25,30,35,40,45,50,55..."
      StartingCost=10
      CostAddPerLevel=5
      MaxLevel=20

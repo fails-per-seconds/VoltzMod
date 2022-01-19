@@ -32,8 +32,11 @@ defaultproperties
 {
      ProtectionMultiplier=0.050000
      SpeedMultiplier=0.025000
+     AbilityCantBuyColor=(R=164,G=14,B=122,A=200)
+     AbilityMaxColor=(R=1,G=1,B=1,A=200)
      AbilityName="Increased Damage Protection"
-     Description="Increases your cumulative total damage reduction by 5% per level. Does not apply to self damage. However, the extra armor slows you down.|Cost (per level): 10."
+     DescColor(0)=(R=255,G=255,B=255,A=220)
+     Description(0)="Increases your cumulative total damage reduction by 5% per level. Does not apply to self damage. However, the extra armor slows you down.|Cost (per level): 10."
      StartingCost=10
      MaxLevel=20
 }

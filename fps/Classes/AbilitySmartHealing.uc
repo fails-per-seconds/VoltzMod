@@ -29,8 +29,11 @@ static function bool OverridePickupQuery(Pawn Other, Pickup item, out byte bAllo
 
 defaultproperties
 {
+     AbilityCantBuyColor=(R=164,G=14,B=122,A=200)
+     AbilityMaxColor=(R=1,G=1,B=1,A=200)
      AbilityName="Smart Healing"
-     Description="Causes healing items to heal you an addition 25% per level. You need to have a Health Bonus stat of at least 50 and a Max Ammo stat of at least 25 to purchase this ability. (Max Level: 4)"
+     DescColor(0)=(R=255,G=255,B=255,A=220)
+     Description(0)="Causes healing items to heal you an addition 25% per level. You need to have a Health Bonus stat of at least 50 and a Max Ammo stat of at least 25 to purchase this ability. (Max Level: 4)"
      StartingCost=15
      CostAddPerLevel=5
      MaxLevel=4

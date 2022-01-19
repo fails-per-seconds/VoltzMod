@@ -185,8 +185,11 @@ defaultproperties
      WeaponDamage=0.500000
      AdrenalineDamage=2.000000
      AdrenalineUsage=0.500000
+     AbilityCantBuyColor=(R=164,G=14,B=122,A=200)
+     AbilityMaxColor=(R=1,G=1,B=1,A=200)
      AbilityName="Loaded Artifacts"
-     Description="When you spawn:|Level 1: You are granted all slow drain artifacts, a magic weapon maker and the invulnerability globe.|Level 2: You are granted the triple, max, fireball and remote artifacts, and breakable artifacts are made unbreakable.|Level 3: You get the rod, blasts and some other artifacts.|Level 4: You get bolt, beam, chain and the spheres.|Extreme level 5 reduces adrenaline used in offensive attacks, but reduces damage from weapons|Cost (per level): 6,8,10,12,14"
+     DescColor(0)=(R=255,G=255,B=255,A=220)
+     Description(0)="When you spawn:|Level 1: You are granted all slow drain artifacts, a magic weapon maker and the invulnerability globe.|Level 2: You are granted the triple, max, fireball and remote artifacts, and breakable artifacts are made unbreakable.|Level 3: You get the rod, blasts and some other artifacts.|Level 4: You get bolt, beam, chain and the spheres.|Extreme level 5 reduces adrenaline used in offensive attacks, but reduces damage from weapons|Cost (per level): 6,8,10,12,14"
      StartingCost=6
      CostAddPerLevel=2
      MaxLevel=5

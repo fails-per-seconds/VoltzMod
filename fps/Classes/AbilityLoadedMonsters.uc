@@ -119,8 +119,11 @@ defaultproperties
      MonsterConfigs(0)=(FriendlyName="Pupae",Monster=Class'SkaarjPack.SkaarjPupae',Adrenaline=15,MonsterPoints=1,Level=1)
      MaxNormalLevel=15
      PetHealthFraction=0.750000
+     AbilityCantBuyColor=(R=164,G=14,B=122,A=200)
+     AbilityMaxColor=(R=1,G=1,B=1,A=200)
      AbilityName="Loaded Monsters"
-     Description="Learn new monsters to summon with Monster Points. At each level, you can summon a better monster. |Cost (per level): 2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,.."
+     DescColor(0)=(R=255,G=255,B=255,A=220)
+     Description(0)="Learn new monsters to summon with Monster Points. At each level, you can summon a better monster. |Cost (per level): 2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,.."
      StartingCost=2
      CostAddPerLevel=1
      MaxLevel=30

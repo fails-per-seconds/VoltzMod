@@ -130,8 +130,10 @@ static function string GetLocalString(optional int Switch, optional PlayerReplic
 defaultproperties
 {
      Invalid[0]=Class'fps.RW_Rage'
+     Invalid[1]=Class'fps.RW_Vorpal'
      CostPerSec=10
      PickupClass=Class'fps.ArtifactTripleDamagePickup'
      IconMaterial=Texture'ArtifactIcons.triple'
      ItemName="Triple Damage"
+     Description="Deals 3x as much damage as usual.|Denied: Rage, Vorpal| |Required Adren: 30+|Cost /s: 10"
 }

@@ -81,8 +81,11 @@ defaultproperties
      SpinLevelMultiplier=1.250000
      JumpChargeTime=1.000000
      ChargeLevelMultiplier=0.800000
+     AbilityCantBuyColor=(R=164,G=14,B=122,A=200)
+     AbilityMaxColor=(R=1,G=1,B=1,A=200)
      AbilityName="Stunt Vehicles"
-     Description="With this skill, you can make wheeled vehicles jump.|Hold down the crouch key to charge up and then release to jump.|This ability also grants control of wheeled vehicles in mid-air.|Additional levels provide more spin, momentum, and less charge time.|Cost (per level): 5,10,15"
+     DescColor(0)=(R=255,G=255,B=255,A=220)
+     Description(0)="With this skill, you can make wheeled vehicles jump.|Hold down the crouch key to charge up and then release to jump.|This ability also grants control of wheeled vehicles in mid-air.|Additional levels provide more spin, momentum, and less charge time.|Cost (per level): 5,10,15"
      StartingCost=5
      CostAddPerLevel=5
      MaxLevel=3

@@ -1,4 +1,4 @@
-class ArtifactMagicMaker extends RPGArtifact;
+class ArtifactMagicGen extends RPGArtifact;
 
 var MutFPS RPGMut;
 var float AdrenalineUsed;
@@ -360,7 +360,7 @@ function int getCost()
 
 function bool shouldBreak()
 {
-	return rand(3) == 0;
+	return false;
 }
 
 function class<RPGWeapon> GetRandomWeaponModifier(class<Weapon> WeaponType, Pawn Other)
@@ -382,7 +382,7 @@ defaultproperties
 {
      CostPerSec=100
      MinActivationTime=0.000001
-     PickupClass=Class'fps.ArtifactMagicMakerPickup'
      IconMaterial=Texture'XGameTextures.SuperPickups.Udamage'
      ItemName="Magic Maker"
+     Description="Magic enchantments for your weapon (denied on super weapons).|Unbreakable!| |Required Adren: 100|Cost /s: 100"
 }

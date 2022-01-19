@@ -17,8 +17,11 @@ static simulated function ModifyPawn(Pawn Other, int AbilityLevel)
 
 defaultproperties
 {
-     AbilityName="Shields Up!"
-     Description="Increases your maximum shield by 25 per level. You must have a Health Bonus stat of 100 before you can purchase this ability. (Max Level: 4)"
+     AbilityCantBuyColor=(R=164,G=14,B=122,A=200)
+     AbilityMaxColor=(R=1,G=1,B=1,A=200)
+     AbilityName="Shields Up"
+     DescColor(0)=(R=255,G=255,B=255,A=220)
+     Description(0)="Increases your maximum shield by 25 per level. You must have a Health Bonus stat of 100 before you can purchase this ability. (Max Level: 4)"
      StartingCost=20
      CostAddPerLevel=5
      MaxLevel=4

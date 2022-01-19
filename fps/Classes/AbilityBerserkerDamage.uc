@@ -48,8 +48,11 @@ defaultproperties
      MaxDamageDist=1800.000000
      MinPlayerLevel=60
      PlayerLevelStep=2
+     AbilityCantBuyColor=(R=164,G=14,B=122,A=200)
+     AbilityMaxColor=(R=1,G=1,B=1,A=200)
      AbilityName="Berserker Damage Bonus"
-     Description="Increases your cumulative total damage bonus by up to 15% per level, depending on closeness to enemy. However, you also take up to 15% extra damage per level, again depending on how close. The closer the better. |Cost (per level): 10. You must be level 60 to purchase the first level of this ability, level 62 to purchase the second level, and so on."
+     DescColor(0)=(R=255,G=255,B=255,A=220)
+     Description(0)="Increases your cumulative total damage bonus by up to 15% per level, depending on closeness to enemy. However, you also take up to 15% extra damage per level, again depending on how close. The closer the better. |Cost (per level): 10. You must be level 60 to purchase the first level of this ability, level 62 to purchase the second level, and so on."
      StartingCost=10
      MaxLevel=20
 }

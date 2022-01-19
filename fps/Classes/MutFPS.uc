@@ -1375,28 +1375,28 @@ defaultproperties
      StartingLevel=15
      PointsPerLevel=5
      Levels[1]=1
-     Levels[2]=1
-     Levels[3]=1
-     Levels[4]=1
-     Levels[5]=1
-     Levels[6]=1
-     Levels[7]=1
-     Levels[8]=1
-     Levels[9]=1
-     Levels[10]=1
-     Levels[11]=1
-     Levels[12]=1
-     Levels[13]=1
-     Levels[14]=1
+     Levels[2]=2
+     Levels[3]=3
+     Levels[4]=4
+     Levels[5]=5
+     Levels[6]=6
+     Levels[7]=7
+     Levels[8]=8
+     Levels[9]=9
+     Levels[10]=10
+     Levels[11]=11
+     Levels[12]=12
+     Levels[13]=13
+     Levels[14]=14
      Levels[15]=37
-     InfiniteReqEXPValue=33
+     InfiniteReqEXPValue=23
      LevelDiffExpGainDiv=1.000000
      MaxLevelupEffectStacking=1
      EXPForWin=100000
      BotBonusLevels=1
-     StatCaps[0]=300
-     StatCaps[1]=7500
-     StatCaps[2]=1000
+     StatCaps[0]=1500
+     StatCaps[1]=10000
+     StatCaps[2]=1150
      StatCaps[3]=0
      StatCaps[4]=0
      StatCaps[5]=2000
@@ -1441,11 +1441,11 @@ defaultproperties
      WeaponModifiers[16]=(WeaponClass=Class'fps.RW_Sturdy',Chance=3)
      WeaponModifiers[17]=(WeaponClass=Class'fps.RW_Vampire',Chance=1)
      WeaponModifiers[18]=(WeaponClass=Class'fps.RW_Vorpal',Chance=1)
-	 MonsterLevel=5
+     MonsterLevel=5
      StartingCredit=0
      CreditPerKill=17
-	 KillCounter=1
-	 WeaponsList(0)=(WeaponClass=Class'xWeapons.TransLauncher',WeaponCost=50)
+     KillCounter=1
+     WeaponsList(0)=(WeaponClass=Class'xWeapons.TransLauncher',WeaponCost=50)
      //WeaponsList(1)=(WeaponClass=Class'fpsWeapons.PowerShieldGun',WeaponCost=1000)
      //WeaponsList(2)=(WeaponClass=Class'fpsWeapons.MP5Gun',WeaponCost=1500)
      //WeaponsList(3)=(WeaponClass=Class'fpsWeapons.pgPortalGun',WeaponCost=2500)
@@ -1454,12 +1454,16 @@ defaultproperties
      //WeaponsList(6)=(WeaponClass=Class'fpsWeapons.NuclearShockRifle',WeaponCost=7500)
      //WeaponsList(7)=(WeaponClass=Class'fpsWeapons.LilLady',WeaponCost=8500)
      //WeaponsList(8)=(WeaponClass=Class'fpsWeapons.DeathCannon',WeaponCost=10000)
-     ArtifactsList(0)=(ArtifactClass=Class'fps.ArtifactMagicMaker',ArtifactCost=1000)
-     //ArtifactsList(1)=(ArtifactClass=Class'fps.ArtifactResurrection',ArtifactCost=1250)
-     //ArtifactsList(2)=(ArtifactClass=Class'fps.ArtifactLightningSpire',ArtifactCost=4200)
-     //ArtifactsList(3)=(ArtifactClass=Class'fps.ArtifactGodlyness',ArtifactCost=7250)
+     ArtifactsList(0)=(ArtifactClass=Class'fps.ArtifactMagnet',ArtifactCost=700)
+     ArtifactsList(1)=(ArtifactClass=Class'fps.ArtifactFlight',ArtifactCost=750)
+     ArtifactsList(2)=(ArtifactClass=Class'fps.ArtifactLightningRod',ArtifactCost=1000)
+     ArtifactsList(3)=(ArtifactClass=Class'fps.ArtifactTripleDamage',ArtifactCost=1300)
+     ArtifactsList(4)=(ArtifactClass=Class'fps.ArtifactMagicGen',ArtifactCost=1600)
+     //ArtifactsList(5)=(ArtifactClass=Class'fps.ArtifactResurrection',ArtifactCost=1950)
+     //ArtifactsList(6)=(ArtifactClass=Class'fps.ArtifactLightningSpire',ArtifactCost=3215)
+     //ArtifactsList(7)=(ArtifactClass=Class'fps.ArtifactGodlyness',ArtifactCost=5380)
      Version=30
-	 bNoUnidentified=true
+     bNoUnidentified=true
      bAutoAdjustInvasionLevel=false
      bFakeBotLevels=false
      bUseOfficialRedirect=true
@@ -1488,9 +1492,9 @@ defaultproperties
      PropsDisplayText(18)="Ironman Mode"
      PropsDisplayText(19)="Use Official Redirect Server"
      PropsDisplayText(20)="Extra Bot Levelups After Match"
-	 PropsDisplayText(21)="Starting Credit"
+     PropsDisplayText(21)="Starting Credit"
      PropsDisplayText(22)="Credits Per Kill"
-     PropsDisplayText(23)="Monsters Starting Level"
+     PropsDisplayText(23)="Monster Starting Level"
      PropsDescText(0)="During the game, all data will be saved every this many seconds."
      PropsDescText(1)="New players start at this Level."
      PropsDescText(2)="The number of stat points earned from a levelup."
@@ -1512,7 +1516,7 @@ defaultproperties
      PropsDescText(18)="If checked, only the winning player or team's data is saved - the losers lose the experience they gained that match."
      PropsDescText(19)="If checked, the server will redirect clients to a special official redirect server for files (all other files will continue to use the normal redirect server, if any)"
      PropsDescText(20)="If Fake Bot Levels is off, bots gain this many extra levels after a match because individual bots don't play often."
-	 PropsDescText(21)="Amount of credits you start with. (works even after death)"
+     PropsDescText(21)="Amount of credits you start with. (works even after death)"
      PropsDescText(22)="(Random) Amount of credits per kill"
      PropsDescText(23)="Monsters start at this level"
      PropsExtras="0;Add Specified Value;1;Add Specified Percent"

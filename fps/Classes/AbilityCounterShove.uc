@@ -35,8 +35,11 @@ static function int BotBuyChance(Bot B, RPGPlayerDataObject Data, int CurrentLev
 
 defaultproperties
 {
+     AbilityCantBuyColor=(R=164,G=14,B=122,A=200)
+     AbilityMaxColor=(R=1,G=1,B=1,A=200)
      AbilityName="CounterShove"
-     Description="Whenever you are damaged by another player, some of the momentum per level is also done to the player who hurt you. Will not CounterShove a CounterShove. You must have a Damage Reduction of at least 50 to purchase this ability. (Max Level: 5)"
+     DescColor(0)=(R=255,G=255,B=255,A=220)
+     Description(0)="Whenever you are damaged by another player, some of the momentum per level is also done to the player who hurt you. Will not CounterShove a CounterShove. You must have a Damage Reduction of at least 50 to purchase this ability. (Max Level: 5)"
      StartingCost=15
      MaxLevel=5
 }

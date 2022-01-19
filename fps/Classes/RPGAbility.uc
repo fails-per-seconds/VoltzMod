@@ -1,8 +1,26 @@
 class RPGAbility extends Object
 	abstract;
 
-var localized string AbilityName, Description;
+var config color AbilityCantBuyColor;
+var config color AbilityMaxColor;
+var localized string AbilityName;
+var config array<Color> DescColor;
+var config array<string> Description;
 var int StartingCost, CostAddPerLevel, BotChance, MaxLevel;
+
+static function string MakeColorCode(color NewColor)
+{
+	if (NewColor.R == 0)
+		NewColor.R = 1;
+
+	if (NewColor.G == 0)
+		NewColor.G = 1;
+
+	if (NewColor.B == 0)
+		NewColor.B = 1;
+
+	return Chr(0x1B)$Chr(NewColor.R)$Chr(NewColor.G)$Chr(NewColor.B);
+}
 
 static function bool AbilityIsAllowed(GameInfo Game, MutFPS RPGMut)
 {

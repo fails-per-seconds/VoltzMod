@@ -62,8 +62,11 @@ static function bool PrePreventDeath(Pawn Killed, Controller Killer, class<Damag
 defaultproperties
 {
      BigSeconds=120
+     AbilityCantBuyColor=(R=164,G=14,B=122,A=200)
+     AbilityMaxColor=(R=1,G=1,B=1,A=200)
      AbilityName="Vehicle Ejector Button"
-     Description="You will be automatically ejected from a destroyed vehicle. Depending upon your level of this skill, it will activate once every 120, 60, 40, or 30 seconds.|Cost (per level): 5,10,15,20"
+     DescColor(0)=(R=255,G=255,B=255,A=220)
+     Description(0)="You will be automatically ejected from a destroyed vehicle. Depending upon your level of this skill, it will activate once every 120, 60, 40, or 30 seconds.|Cost (per level): 5,10,15,20"
      StartingCost=5
      CostAddPerLevel=5
      MaxLevel=4

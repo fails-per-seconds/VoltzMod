@@ -30,8 +30,11 @@ defaultproperties
 {
      MinHealthBonus=25
      HealthBonusStep=25
+     AbilityCantBuyColor=(R=164,G=14,B=122,A=200)
+     AbilityMaxColor=(R=1,G=1,B=1,A=200)
      AbilityName="Armor Regeneration"
-     Description="Heals 2 armor per second per level. Does not heal past starting armor amount. You must have a Health Bonus stat equal to 25 times the ability level you wish to have before you can purchase it. |Cost (per level): 15,20,25,30,..."
+     DescColor(0)=(R=255,G=255,B=255,A=220)
+     Description(0)="Heals 2 armor per second per level. Does not heal past starting armor amount. You must have a Health Bonus stat equal to 25 times the ability level you wish to have before you can purchase it. |Cost (per level): 15,20,25,30,..."
      StartingCost=15
      CostAddPerLevel=5
      MaxLevel=10

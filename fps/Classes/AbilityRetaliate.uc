@@ -23,8 +23,11 @@ static function HandleDamage(out int Damage, Pawn Injured, Pawn Instigator, out 
 
 defaultproperties
 {
+     AbilityCantBuyColor=(R=164,G=14,B=122,A=200)
+     AbilityMaxColor=(R=1,G=1,B=1,A=200)
      AbilityName="Retaliation"
-     Description="Whenever you are damaged by another player, 5% of the damage per level is also done to the player that hurt you. Your Damage Bonus stat and your opponent's Damage Reduction stat are applied to this extra damage. You can't retaliate to retaliation damage and retaliation damage will not kill the enemy by itself. You must have a Damage Reduction of at least 50 to purchase this ability. (Max Level: 10)"
+     DescColor(0)=(R=255,G=255,B=255,A=220)
+     Description(0)="Whenever you are damaged by another player, 5% of the damage per level is also done to the player that hurt you. Your Damage Bonus stat and your opponent's Damage Reduction stat are applied to this extra damage. You can't retaliate to retaliation damage and retaliation damage will not kill the enemy by itself. You must have a Damage Reduction of at least 50 to purchase this ability. (Max Level: 10)"
      StartingCost=10
      CostAddPerLevel=5
      MaxLevel=10

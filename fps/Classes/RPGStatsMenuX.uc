@@ -363,7 +363,7 @@ function UpdateAbilityList()
 				if (Level >= MaxLevel)
 				{
 					Cost = 0;
-					Abilities.List.Add(StatsInv.AllAbilities[x].default.AbilityName@"("$CurrentLevelText@Level@"["$MaxText$"])", StatsInv.AllAbilities[x], string(Cost));
+					Abilities.List.Add(MakeColorCode(StatsInv.AllAbilities[x].default.AbilityMaxColor)$StatsInv.AllAbilities[x].default.AbilityName@"("$CurrentLevelText@Level@"["$MaxText$"])", StatsInv.AllAbilities[x], string(Cost));
 				}
 				else
 				{
@@ -373,10 +373,10 @@ function UpdateAbilityList()
 						Cost = cab.static.SubClassCost(TempDataObject, Level, curSubClass);
 					}
 					else
-						Cost =StatsInv.AllAbilities[x].static.Cost(TempDataObject, Level);
+						Cost = StatsInv.AllAbilities[x].static.Cost(TempDataObject, Level);
 
 					if (Cost <= 0)
-						Abilities.List.Add(StatsInv.AllAbilities[x].default.AbilityName@"("$CurrentLevelText@Level$","@CantBuyText$")", StatsInv.AllAbilities[x], string(Cost));
+						Abilities.List.Add(MakeColorCode(StatsInv.AllAbilities[x].default.AbilityCantBuyColor)$StatsInv.AllAbilities[x].default.AbilityName@"("$CurrentLevelText@Level$","@CantBuyText$")", StatsInv.AllAbilities[x], string(Cost));
 					else
 						Abilities.List.Add(StatsInv.AllAbilities[x].default.AbilityName@"("$CurrentLevelText@Level$","@CostText@Cost$")", StatsInv.AllAbilities[x], string(Cost));
 				}
@@ -426,16 +426,22 @@ function bool UpdateAbilityButtons(GUIComponent Sender)
 
 function bool ShowAbilityInfo()
 {
+	local int i;
+	local string Info;
 	local class<RPGAbility> Ability;
 	local GUIScrollTextBox AbilityInfo;
+
+	AbilityInfo = GUIScrollTextBox(Controls[28]);
+	AbilityInfo.MyScrollBar.WinWidth = 0.01;
 
 	Ability = class<RPGAbility>(Abilities.List.GetObject());
 	if (Ability == None)
 		return true;
 
-	AbilityInfo = GUIScrollTextBox(Controls[28]);
-	AbilityInfo.MyScrollBar.WinWidth = 0.01;
-	AbilityInfo.SetContent(Ability.default.Description);
+	for(i = 0; i < Ability.default.Description.Length; i++)
+		Info $= MakeColorCode(Ability.default.DescColor[i])$Ability.default.Description[i];
+
+	AbilityInfo.SetContent(Info);
 
 	return true;
 }

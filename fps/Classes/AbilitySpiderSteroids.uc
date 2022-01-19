@@ -31,8 +31,11 @@ static simulated function ModifyConstruction(Pawn Other, int AbilityLevel)
 defaultproperties
 {
      LevMultiplier=0.200000
+     AbilityCantBuyColor=(R=164,G=14,B=122,A=200)
+     AbilityMaxColor=(R=1,G=1,B=1,A=200)
      AbilityName="Spider Steroids"
-     Description="Allows the Engineer Link Gun to boost spider mines"
+     DescColor(0)=(R=255,G=255,B=255,A=220)
+     Description(0)="Allows the Engineer Link Gun to boost spider mines"
      StartingCost=5
      MaxLevel=20
 }

@@ -196,14 +196,15 @@ simulated function Tick(float deltaTime)
 
 defaultproperties
 {
-     CostPerHit=0.250000
+     CostPerHit=0.150000
      HealthMultiplier=0.100000
      MaxDamagePerHit=70
      MinDamagePerHit=5
      TargetRadius=2000.000000
      HitEmitterClass=Class'XEffects.LightningBolt'
-     CostPerSec=1
+     CostPerSec=3
      PickupClass=Class'fps.ArtifactLightningRodPickup'
      IconMaterial=Texture'ArtifactIcons.rod'
      ItemName="Lightning Rod"
+     Description="Targets near-by enemies with lightning bolts coming out of you| |Range: 2000|MaxDamagePerHit: 70|MinDamagePerHit: 5| |Cost /hit: 15%|Cost /s: 3"
 }

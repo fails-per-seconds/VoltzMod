@@ -27,8 +27,11 @@ static simulated function ModifyPawn(Pawn Other, int AbilityLevel)
 
 defaultproperties
 {
+     AbilityCantBuyColor=(R=164,G=14,B=122,A=200)
+     AbilityMaxColor=(R=1,G=1,B=1,A=200)
      AbilityName="Monster Points"
-     Description="Allows you to summon monsters with the loaded monsters skill. |Cost (per level): 2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21...."
+     DescColor(0)=(R=255,G=255,B=255,A=220)
+     Description(0)="Allows you to summon monsters with the loaded monsters skill. |Cost (per level): 2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21...."
      StartingCost=2
      CostAddPerLevel=1
      MaxLevel=30

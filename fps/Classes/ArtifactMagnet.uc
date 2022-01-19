@@ -103,8 +103,9 @@ state Activated
 defaultproperties
 {
      NotInVehicleMessage="Sorry, vehicles can't use an Electro-Magnet around."
-     CostPerSec=2
+     CostPerSec=5
      PickupClass=Class'fps.ArtifactMagnetPickup'
      IconMaterial=Texture'XGameShaders.BRShaders.BRBall'
      ItemName="Electro-Magnet"
+     Description="Allows you to walk on walls.| |Cost /s: 5"
 }

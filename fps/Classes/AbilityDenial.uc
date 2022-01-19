@@ -145,8 +145,11 @@ defaultproperties
      LevelCost(1)=15
      LevelCost(2)=20
      LevelCost(3)=20
+     AbilityCantBuyColor=(R=164,G=14,B=122,A=200)
+     AbilityMaxColor=(R=1,G=1,B=1,A=200)
      AbilityName="Denial"
-     Description="The first level of this ability simply prevents you from dropping a weapon when you die (but you don't get it either). The second level allows you to respawn with the weapon and ammo you were using when you died. The third level will save all your weapons when you die. You need to be at least Level 25 to purchase this ability. |This ability does not trigger for self-inflicted death.|Cost (per level): 15,20,20"
+     DescColor(0)=(R=255,G=255,B=255,A=220)
+     Description(0)="The first level of this ability simply prevents you from dropping a weapon when you die (but you don't get it either). The second level allows you to respawn with the weapon and ammo you were using when you died. The third level will save all your weapons when you die. You need to be at least Level 25 to purchase this ability. |This ability does not trigger for self-inflicted death.|Cost (per level): 15,20,20"
      BotChance=1
      MaxLevel=3
 }

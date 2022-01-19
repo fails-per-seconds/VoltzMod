@@ -156,7 +156,7 @@ simulated function AdjustFireRate(Weapon W)
 	FireMode[1] = W.GetFireMode(1);
 	if (MinigunFire(FireMode[0]) != None)
 	{
-		Modifier = 1.f + 0.01 * Data.WeaponSpeed;
+		Modifier = 1.f + 0.002 * Data.WeaponSpeed;
 		MinigunFire(FireMode[0]).BarrelRotationsPerSec = MinigunFire(FireMode[0]).default.BarrelRotationsPerSec * Modifier;
 		MinigunFire(FireMode[0]).FireRate = 1.f / (MinigunFire(FireMode[0]).RoundsPerRotation * MinigunFire(FireMode[0]).BarrelRotationsPerSec);
 		MinigunFire(FireMode[0]).MaxRollSpeed = 65536.f*MinigunFire(FireMode[0]).BarrelRotationsPerSec;
@@ -166,7 +166,7 @@ simulated function AdjustFireRate(Weapon W)
 	}
 	else if (!FireMode[0].IsA('TransFire') && !FireMode[0].IsA('BallShoot') && !FireMode[0].IsA('MeleeSwordFire'))
 	{
-		Modifier = 1.f + 0.01 * Data.WeaponSpeed;
+		Modifier = 1.f + 0.002 * Data.WeaponSpeed;
 		if (FireMode[0] != None)
 		{
 			if (ShieldFire(FireMode[0]) != None)
@@ -732,13 +732,13 @@ simulated function ModifyVehicle(Vehicle V)
 	if (OV != None)
 	{
 		for (i = 0; i < OV.Weapons.length; i++)
-			OV.Weapons[i].SetFireRateModifier(1.f + 0.01 * Data.WeaponSpeed);
+			OV.Weapons[i].SetFireRateModifier(1.f + 0.002 * Data.WeaponSpeed);
 	}
 	else
 	{
 		WP = ONSWeaponPawn(V);
 		if (WP != None)
-			WP.Gun.SetFireRateModifier(1.f + 0.01 * Data.WeaponSpeed);
+			WP.Gun.SetFireRateModifier(1.f + 0.002 * Data.WeaponSpeed);
 		else if (V.Weapon != None)
 			AdjustFireRate(V.Weapon);
 	}

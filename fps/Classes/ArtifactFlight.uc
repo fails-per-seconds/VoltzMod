@@ -53,8 +53,9 @@ state Activated
 defaultproperties
 {
      NotInVehicleMessage="Sorry, vehicles can't wear boots."
-     CostPerSec=5
+     CostPerSec=8
      PickupClass=Class'fps.ArtifactFlightPickup'
      IconMaterial=Texture'ArtifactIcons.Flight'
      ItemName="Flight"
+     Description="Enables you to fly.| |Cost /s: 8"
 }

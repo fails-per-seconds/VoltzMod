@@ -45,8 +45,11 @@ defaultproperties
      ShieldPerLevel=10
      ShieldRegenRate=1.000000
      RegenPerLevel=0.500000
+     AbilityCantBuyColor=(R=164,G=14,B=122,A=200)
+     AbilityMaxColor=(R=1,G=1,B=1,A=200)
      AbilityName="Shield Regeneration"
-     Description="Regenerates your shield at 0.5 per level per second, minimum one, provided you haven't suffered damage recently. Does not regenerate past starting shield amount.  |Cost (per level): 4,4,4,4,4,4,4,4,4,4,...."
+     DescColor(0)=(R=255,G=255,B=255,A=220)
+     Description(0)="Regenerates your shield at 0.5 per level per second, minimum one, provided you haven't suffered damage recently. Does not regenerate past starting shield amount.  |Cost (per level): 4,4,4,4,4,4,4,4,4,4,...."
      StartingCost=4
      BotChance=8
      MaxLevel=25

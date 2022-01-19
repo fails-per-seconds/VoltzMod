@@ -19,8 +19,11 @@ static function HandleDamage(out int Damage, Pawn Injured, Pawn Instigator, out 
 
 defaultproperties
 {
+     AbilityCantBuyColor=(R=164,G=14,B=122,A=200)
+     AbilityMaxColor=(R=1,G=1,B=1,A=200)
      AbilityName="Cautiousness"
-     Description="Reduces self damage by 15% per level. Your Health Bonus stat must be at least 50 and your Damage Reduction stat at least 25 to purchase this ability. (Max Level: 5)"
+     DescColor(0)=(R=255,G=255,B=255,A=220)
+     Description(0)="Reduces self damage by 15% per level. Your Health Bonus stat must be at least 50 and your Damage Reduction stat at least 25 to purchase this ability. (Max Level: 5)"
      StartingCost=15
      CostAddPerLevel=5
      MaxLevel=5

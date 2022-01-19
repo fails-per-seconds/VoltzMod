@@ -270,8 +270,11 @@ defaultproperties
      PlayerLevelReqd(4)=55
      PlayerLevelReqd(5)=55
      PlayerLevelReqd(6)=55
+     AbilityCantBuyColor=(R=164,G=14,B=122,A=200)
+     AbilityMaxColor=(R=1,G=1,B=1,A=200)
      AbilityName="Loaded Weapons"
-     Description="When you spawn:|Level 1: You are granted all regular weapons with the default percentage chance for magic weapons.|Level 2: You are granted onslaught weapons and all weapons with max ammo.|Level 3: You are granted super weapons (Invasion game types only).|Level 4: Magic weapons will be generated for all your weapons.|Level 5: You receive all positive magic weapons.|Level 6: All maxed weapons and increased weapon damage, and reduced ability to use adrenaline and artifacts. |You must be level 40 before you can buy level 2 and level 55 before you can buy level 3.|Cost (per level): 10,15,20,25,30,.."
+     DescColor(0)=(R=255,G=255,B=255,A=220)
+     Description(0)="When you spawn:|Level 1: You are granted all regular weapons with the default percentage chance for magic weapons.|Level 2: You are granted onslaught weapons and all weapons with max ammo.|Level 3: You are granted super weapons (Invasion game types only).|Level 4: Magic weapons will be generated for all your weapons.|Level 5: You receive all positive magic weapons.|Level 6: All maxed weapons and increased weapon damage, and reduced ability to use adrenaline and artifacts. |You must be level 40 before you can buy level 2 and level 55 before you can buy level 3.|Cost (per level): 10,15,20,25,30,.."
      StartingCost=10
      CostAddPerLevel=5
      MaxLevel=6

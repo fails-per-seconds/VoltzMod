@@ -31,7 +31,7 @@ static simulated function ModifyWeapon(Weapon Weapon, int AbilityLevel)
 			WeaponSpeed =  StatsInv.Data.WeaponSpeed;
 	}
 
-	Modifier = 1.f + 0.01 * WeaponSpeed;
+	Modifier = 1.f + 0.002 * WeaponSpeed;
 	Modifier *= 1.f - (default.SpeedMultiplier * AbilityLevel);
 	if (Modifier < 0.1)
 		Modifier = 0.1;
@@ -80,8 +80,11 @@ defaultproperties
 {
      DamageMultiplier=0.300000
      SpeedMultiplier=0.050000
+     AbilityCantBuyColor=(R=164,G=14,B=122,A=200)
+     AbilityMaxColor=(R=1,G=1,B=1,A=200)
      AbilityName="Increased Damage Bonus"
-     Description="Increases your cumulative total damage bonus by 30% per level. However, weapon speed reduced.|Cost (per level): 10. "
+     DescColor(0)=(R=255,G=255,B=255,A=220)
+     Description(0)="Increases your cumulative total damage bonus by 30% per level. However, weapon speed reduced.|Cost (per level): 10. "
      StartingCost=10
      MaxLevel=20
 }

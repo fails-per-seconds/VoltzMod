@@ -62,8 +62,11 @@ static simulated function ModifyPawn(Pawn Other, int AbilityLevel)
 defaultproperties
 {
      ShieldHealingPercent=1.000000
+     AbilityCantBuyColor=(R=164,G=14,B=122,A=200)
+     AbilityMaxColor=(R=1,G=1,B=1,A=200)
      AbilityName="Shield Healing"
-     Description="Allows Engineers to heal other people's shields.|Level 1 enables the Engineers Link Gun. |Level 2 Gives double the experience for healing, Level 3 triple the experience, and gives the Shield Blast artifact. |Cost (per level): 10,15,20"
+     DescColor(0)=(R=255,G=255,B=255,A=220)
+     Description(0)="Allows Engineers to heal other people's shields.|Level 1 enables the Engineers Link Gun. |Level 2 Gives double the experience for healing, Level 3 triple the experience, and gives the Shield Blast artifact. |Cost (per level): 10,15,20"
      StartingCost=10
      CostAddPerLevel=5
      BotChance=7

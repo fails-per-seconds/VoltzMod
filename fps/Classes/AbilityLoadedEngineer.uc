@@ -391,8 +391,11 @@ defaultproperties
      SentinelDamage=2.000000
      MinPlayerLevel=6
      PlayerLevelStep=6
+     AbilityCantBuyColor=(R=164,G=14,B=122,A=200)
+     AbilityMaxColor=(R=1,G=1,B=1,A=200)
      AbilityName="Loaded Engineer"
-     Description="Learn sentinels, turrets, vehicle and buildings to summon. At each level, you can summon better items. You need to have a level six times the ability level you wish to purchase. |Cost (per level): 3,4,5,6,7,8,9,10,11,12,13,14,15,16,17..."
+     DescColor(0)=(R=255,G=255,B=255,A=220)
+     Description(0)="Learn sentinels, turrets, vehicle and buildings to summon. At each level, you can summon better items. You need to have a level six times the ability level you wish to purchase. |Cost (per level): 3,4,5,6,7,8,9,10,11,12,13,14,15,16,17..."
      StartingCost=3
      CostAddPerLevel=1
      MaxLevel=30
